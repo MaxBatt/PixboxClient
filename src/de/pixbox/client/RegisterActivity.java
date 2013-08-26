@@ -1,28 +1,16 @@
 package de.pixbox.client;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
@@ -30,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
@@ -38,7 +25,6 @@ public class RegisterActivity extends Activity {
 	private Button btn;
 	private TextView tv;
 	private ProgressBar pb;
-	private String username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,72 +80,29 @@ public class RegisterActivity extends Activity {
 	// Button Click
 	public void onBtnClicked(View v) {
 		pb.setVisibility(View.VISIBLE);
-		new MyAsyncTask().execute(et.getText().toString());
+		AsyncHttpClient client = new AsyncHttpClient();
+		
+		try {
+			String user = URLEncoder.encode(et.getText()
+					.toString(), "UTF-8");
+			
+			RestClient.get("user/new/?u=" + user, null, new AsyncHttpResponseHandler() {
+	            @Override
+	            public void onSuccess(String response) {
+	                // Do something with the response
+	            	pb.setVisibility(View.GONE);
+	                System.out.println(response);
+	            }
+	        });
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
-	private class MyAsyncTask extends AsyncTask<String, Integer, String> {
-
-		@Override
-		protected String doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			String response = postData(params[0]);
-			return response;
-		}
-
-		String error = "An error has occured";
-		protected void onPostExecute(String response) {
-			pb.setVisibility(View.GONE);
-			
-			if(response.contains("http://")){
-				tv.setText(response);
-			}
-			else{
-				tv.setText(error + response);
-			}
-			
-		}
-
-		protected void onProgressUpdate(Integer... progress) {
-			pb.setProgress(progress[0]);
-		}
-
-		public String postData(String username) {
-			try {
-
-				String usernameValue = URLEncoder.encode(et.getText()
-						.toString(), "UTF-8");
-
-				// Create http cliient object to send request to server
-				HttpClient client = new DefaultHttpClient();
-
-				String URL = "http://www.maxbatt.de/picbox/user/new?u="
-						+ usernameValue;
-				System.out.println(URL);
-
-				try {
-					String response = "";
-
-					// Create Request to server and get response
-
-					HttpGet httpget = new HttpGet(URL);
-					ResponseHandler<String> responseHandler = new BasicResponseHandler();
-					response = client.execute(httpget, responseHandler);
-
-					// Show response on activity
-
-					System.out.println("Response: " + response);
-					return response;
-				
-				} catch (Exception ex) {
-					System.out.println("Error: " + ex);
-				}
-			} catch (UnsupportedEncodingException ex) {
-				System.out.println("Error: " + ex);
-			}
-			return null;
-		}
-
-	}
+	
 
 	private boolean isEmpty(EditText etText) {
 		if (etText.getText().toString().trim().length() > 0) {
