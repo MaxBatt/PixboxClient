@@ -38,6 +38,7 @@ public class RegisterActivity extends Activity {
 	private Button btn;
 	private TextView tv;
 	private ProgressBar pb;
+	private String username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class RegisterActivity extends Activity {
 		});
 
 	}
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -165,5 +168,11 @@ public class RegisterActivity extends Activity {
 			return true;
 		}
 	}
+
+	
+
+
+	
+
 
 }
