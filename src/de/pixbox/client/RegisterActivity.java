@@ -3,12 +3,14 @@ package de.pixbox.client;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-
-
-import com.loopj.android.http.AsyncHttpClient;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import de.pixbox.client.helpers.RestClient;
+import de.pixbox.client.helpers.User;
+
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,13 +21,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+/**
+ * @author Max Batt
+ * 
+ */
 public class RegisterActivity extends Activity {
 
 	private EditText et;
 	private Button btn;
 	private TextView tv;
 	private ProgressBar pb;
+	public static final String PREFS = "PIXBOX_SETTINGS";
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,71 +47,139 @@ public class RegisterActivity extends Activity {
 
 		btn.setEnabled(false);
 
-		// EditTextOnChange
+		// Listener for any changes in the EditTest for Username
+		// checks if username only contains letters and numbers
+		// checks if username is empty
+
 		et.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-
-				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-
-				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
 
+				// No username is typed in
 				if (isEmpty(et)) {
 					btn.setEnabled(false);
+					tv.setText(getResources().getString(
+							R.string.err_no_username));
 				} else {
-					btn.setEnabled(true);
+					String username = et.getText().toString();
+
+					// username got invalid chars
+					if (!username.matches("^[a-zA-Z0-9]+$")) {
+						btn.setEnabled(false);
+						tv.setText(getResources().getString(
+								R.string.err_wrong_username));
+					} else {
+						btn.setEnabled(true);
+						tv.setText("");
+					}
+
 				}
+
 			}
 		});
 
 	}
-	
-	
 
+	/* Options Menu
+	 * 
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
 
-	// Button Click
+	/**
+	 * Called if "Create User" Button is clicked
+	 * Creates an AsyncHTTPClient
+	 * Sends a HHTP-Request to create a nuw user with the typed in username
+	 * Reports an error, if user already exits
+	 * If user can be created, the user information is passed back as a JSON-String
+	 * JSON-String is converted into a user object. 
+	 * User-data is stored in a Shared pref file to make it permanently available
+	 * @param v
+	 */
 	public void onBtnClicked(View v) {
-		pb.setVisibility(View.VISIBLE);
-		AsyncHttpClient client = new AsyncHttpClient();
 		
+//		Show ProgressBar
+		pb.setVisibility(View.VISIBLE);
+
 		try {
-			String user = URLEncoder.encode(et.getText()
-					.toString(), "UTF-8");
+
+			String user = URLEncoder.encode(et.getText().toString(), "UTF-8");
 			
-			RestClient.get("user/new/?u=" + user, null, new AsyncHttpResponseHandler() {
-	            @Override
-	            public void onSuccess(String response) {
-	                // Do something with the response
-	            	pb.setVisibility(View.GONE);
-	                System.out.println(response);
-	            }
-	        });
-			
+//			Send HTTP request for creating a user with given username 
+			RestClient.get("user/new/?u=" + user, null,
+					new AsyncHttpResponseHandler() {
+				
+//						If request is successful
+						@Override
+						public void onSuccess(String response) {
+							
+//							Hide Progressbar
+							pb.setVisibility(View.GONE);
+
+							try {
+//								Convert JSON-String to object
+								Gson gson = new Gson();
+								User user = gson.fromJson(response, User.class);
+								//System.out.println(user.getUsername());
+
+								// Save Userdata permanently in SharedPreferences
+								SharedPreferences settings = getSharedPreferences(
+										PREFS, 0);
+								SharedPreferences.Editor editor = settings
+										.edit();
+								settings.edit();
+								editor.putString("id", user.getId());
+								settings.edit();
+								editor.putString("username", user.getUsername());
+								editor.commit();
+
+//							If response is not a valid JSON string, it is an error message. Show it!
+							} catch (Exception e) {
+								System.out.println(e);
+								tv.setText(getResources().getString(
+										R.string.err_general)
+										+ response);
+							}
+						}
+						
+//						If request was not succesful, show error
+						@Override
+						public void onFailure(Throwable error, String content) {
+							// Do something with the response
+							pb.setVisibility(View.GONE);
+							tv.setText("An error occured: " + content);
+						}
+					});
+
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	
-
+	
+	/**
+	 * Checks if the username EditText is empty
+	 * @param etText
+	 * @return
+	 */
 	private boolean isEmpty(EditText etText) {
 		if (etText.getText().toString().trim().length() > 0) {
 			return false;
@@ -111,11 +187,5 @@ public class RegisterActivity extends Activity {
 			return true;
 		}
 	}
-
-	
-
-
-	
-
 
 }

@@ -4,5 +4,8 @@
     <string name="app_name">PixboxClient</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="err_general">An error occurred. </string>
+    <string name="err_no_username">Please type in a username</string>
+    <string name="err_wrong_username">For your username only letters and numbers are allowed</string>
 
 </resources>
