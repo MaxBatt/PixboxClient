@@ -10,6 +10,7 @@ import de.pixbox.client.helpers.RestClient;
 import de.pixbox.client.helpers.User;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,7 +32,7 @@ public class RegisterActivity extends Activity {
 	private Button btn;
 	private TextView tv;
 	private ProgressBar pb;
-	public static final String PREFS = "PIXBOX_SETTINGS";
+	public static final String PREFS = "PIXBOX_PREFS";
 
 	
 	@Override
@@ -143,10 +144,13 @@ public class RegisterActivity extends Activity {
 								SharedPreferences.Editor editor = settings
 										.edit();
 								settings.edit();
-								editor.putString("id", user.getId());
+								editor.putString("userid", user.getId());
 								settings.edit();
 								editor.putString("username", user.getUsername());
 								editor.commit();
+								
+								Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+								startActivity(i);
 
 //							If response is not a valid JSON string, it is an error message. Show it!
 							} catch (Exception e) {

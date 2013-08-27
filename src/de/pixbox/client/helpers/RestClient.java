@@ -1,5 +1,7 @@
 package de.pixbox.client.helpers;
 
+import org.apache.http.client.params.ClientPNames;
+
 import com.loopj.android.http.*;
 
 /**
@@ -22,6 +24,7 @@ public class RestClient {
 public static void get(String relativeURL, RequestParams params, AsyncHttpResponseHandler responseHandler) {
 	  //System.out.println(getAbsoluteUrl(relativeURL));
       client.get(getAbsoluteUrl(relativeURL), params, responseHandler);
+      client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
   }
 
 
@@ -33,6 +36,7 @@ public static void get(String relativeURL, RequestParams params, AsyncHttpRespon
  */
 public static void post(String relativeURL, RequestParams params, AsyncHttpResponseHandler responseHandler) {
       client.post(getAbsoluteUrl(relativeURL), params, responseHandler);
+      client.getHttpClient().getParams().setParameter(ClientPNames.ALLOW_CIRCULAR_REDIRECTS, true);
   }
   
 
