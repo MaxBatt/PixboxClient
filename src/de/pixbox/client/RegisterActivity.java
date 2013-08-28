@@ -151,6 +151,7 @@ public class RegisterActivity extends Activity {
 								
 								Intent i = new Intent(RegisterActivity.this, MainActivity.class);
 								startActivity(i);
+								finish();
 
 //							If response is not a valid JSON string, it is an error message. Show it!
 							} catch (Exception e) {
