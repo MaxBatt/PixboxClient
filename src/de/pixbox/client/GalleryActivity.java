@@ -21,6 +21,7 @@ import de.pixbox.client.helpers.RestClient;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -53,14 +54,20 @@ public class GalleryActivity extends ListActivity implements
 	private GalleryListAdapter adapter;
 	// position in list of the clicked image
 	private int actPosition;
-	
-	private static String imageFolder = Environment.getExternalStorageDirectory().toString() + "/pixpox/pictures";
+	//SD Card Folder for storing images
+	private static String imageFolder = Environment.getExternalStorageDirectory().toString() + "/PixBox/pictures";
+	//ProgressDialog
+	private ProgressDialog pd;
 	
 
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
+		
+		// Show ProgressDialog until Gallery is loaded
+		pd = ProgressDialog.show(this, "Please wait...", 
+                "Loading online gallery", true);
 
-		// Fetch Username and I from intent extras
+		// Fetch Username and ID from intent extras
 		// Extras
 		Bundle extras = getIntent().getExtras();
 		if (extras == null) {
@@ -107,6 +114,9 @@ public class GalleryActivity extends ListActivity implements
 
 							// Fill ListView
 							ListView listView = getListView();
+							
+							// Dismiss ProgressDialog, when Gallery is loaded
+							pd.dismiss();
 							
 							// OnItemClickListener for Click on an item in list
 							listView.setOnItemClickListener(GalleryActivity.this);
