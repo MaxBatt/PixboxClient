@@ -1,6 +1,7 @@
 package de.pixbox.client;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -31,6 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 
@@ -43,7 +45,7 @@ import android.widget.ListView;
  *
  */
 public class GalleryActivity extends ListActivity implements
-		OnItemClickListener {
+		OnItemClickListener, OnItemLongClickListener {
 
 	// ArrayList with all images
 	private ArrayList<Image> imageList;
@@ -51,6 +53,8 @@ public class GalleryActivity extends ListActivity implements
 	private GalleryListAdapter adapter;
 	// position in list of the clicked image
 	private int actPosition;
+	
+	private static String imageFolder = Environment.getExternalStorageDirectory().toString() + "/pixpox/pictures";
 	
 
 	public void onCreate(Bundle icicle) {
@@ -65,6 +69,9 @@ public class GalleryActivity extends ListActivity implements
 		// Get data via the key
 		String userID = extras.getString("userID");
 		String username = extras.getString("username");
+		
+		//Create a PixBox images folder, if it not exists
+        createImageFolder(imageFolder);
 		
 		
 		
@@ -134,13 +141,39 @@ public class GalleryActivity extends ListActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		System.out.println("click");
 		
 		// List-position of the clicked image
 		actPosition = position;
 		
-		// Start AsyncTask downloading image
-		new DownloadFileFromURL().execute(imageList.get(position).getUrl());
+		
+		
+		//Check if the file is already on SD Card. If not, download.
+		String imagePath = imageFolder + "/" + imageList.get(position).getFilename();
+		File file = new File(imagePath);
+		
+		if (!file.exists()){
+			// Start AsyncTask downloading image
+			new DownloadFileFromURL().execute(imageList.get(position).getUrl());
+			System.out.println("Downloaded the file!");
+		}
+		else{
+			openImageInGallery(imagePath);
+			System.out.println("Opened The file from SD Card");
+		}
+		
+	}
+	
+	
+	/* (non-Javadoc)
+	 * onItemLongClickListener for ListView.
+	 * on Long click on an item a menu is shown
+	 */
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		System.out.println("longclick");
+		
+		return true;
 	}
 	
 	
@@ -177,8 +210,10 @@ public class GalleryActivity extends ListActivity implements
 	            // input stream to read file - with 8k buffer
 	            InputStream input = new BufferedInputStream(url.openStream(), 8192);
 	 
+	            
+	            
 	            // Output stream to write file
-	            OutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory().toString() + "/" +  imageList.get(actPosition).getFilename());
+	            OutputStream output = new FileOutputStream(imageFolder + "/" +  imageList.get(actPosition).getFilename());
 	 
 	            byte data[] = new byte[1024];
 	            
@@ -218,18 +253,25 @@ public class GalleryActivity extends ListActivity implements
 	 
 	        // Displaying downloaded image into image view
 	        // Reading image path from sdcard
-	        String imagePath = Environment.getExternalStorageDirectory().toString() + "/" + imageList.get(actPosition).getFilename();
+	        String imagePath = imageFolder + "/" + imageList.get(actPosition).getFilename();
 	        Log.d("pixbox", "Downloaded file to " + imagePath);
 	        // setting downloaded into image view
 	       // my_image.setImageDrawable(Drawable.createFromPath(imagePath));
 	        
-	        Intent intent = new Intent();
-	        intent.setAction(Intent.ACTION_VIEW);
-	        intent.setDataAndType(Uri.parse("file://" + imagePath), "image/*");
-	        startActivity(intent);
+	        openImageInGallery(imagePath);
+	        
 	    }
 	 
 	}
+	
+	public void openImageInGallery(String imagePath){
+		Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse("file://" + imagePath), "image/*");
+        startActivity(intent);
+	}
+	
+	
 	
 	
 	
@@ -254,6 +296,13 @@ public class GalleryActivity extends ListActivity implements
 							}
 						}
 				).create().show();
+	}
+	
+	public void createImageFolder(String folder){
+		File f = new File(folder);
+		if(!f.exists()){
+			f.mkdirs();
+		}
 	}
 
 }
