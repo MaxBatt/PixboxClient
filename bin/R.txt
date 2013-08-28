@@ -7,14 +7,14 @@ int drawable border 0x7f020001
 int drawable ic_launcher 0x7f020002
 int id action_settings 0x7f040010
 int id disk 0x7f040002
-int id editUsername 0x7f04000d
+int id editUsername 0x7f04000c
 int id galleryBtn 0x7f040009
 int id imgView 0x7f040003
 int id mainContent 0x7f040006
 int id memory 0x7f040001
 int id no_cache 0x7f040000
 int id okBtn 0x7f04000e
-int id progressBar1 0x7f04000c
+int id progressBar1 0x7f04000d
 int id takePictureBtn 0x7f040008
 int id textView1 0x7f040005
 int id tvError 0x7f04000b
@@ -39,14 +39,19 @@ int string err_no_internet 0x7f060010
 int string err_no_username 0x7f060004
 int string err_upload 0x7f060006
 int string err_wrong_username 0x7f060005
+int string exporting_image 0x7f060016
 int string gallery_btn 0x7f06000a
 int string hello_world 0x7f060002
+int string loading_online_gallery 0x7f060015
 int string no_images 0x7f060011
 int string picture_cam 0x7f06000c
 int string picture_gallery 0x7f06000d
 int string take_picture_btn 0x7f060009
+int string upload_complete 0x7f060018
 int string uploaded_label 0x7f060013
+int string uploading_image 0x7f060017
 int string user_welcome_text 0x7f060008
+int string wait 0x7f060014
 int style AppBaseTheme 0x7f070000
 int style AppTheme 0x7f070001
 int[] styleable WebCachedImageView { 0x7f010000, 0x7f010001 }

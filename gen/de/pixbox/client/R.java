@@ -48,14 +48,14 @@ containing a value of this type.
     public static final class id {
         public static final int action_settings=0x7f040010;
         public static final int disk=0x7f040002;
-        public static final int editUsername=0x7f04000d;
+        public static final int editUsername=0x7f04000c;
         public static final int galleryBtn=0x7f040009;
         public static final int imgView=0x7f040003;
         public static final int mainContent=0x7f040006;
         public static final int memory=0x7f040001;
         public static final int no_cache=0x7f040000;
         public static final int okBtn=0x7f04000e;
-        public static final int progressBar1=0x7f04000c;
+        public static final int progressBar1=0x7f04000d;
         public static final int takePictureBtn=0x7f040008;
         public static final int textView1=0x7f040005;
         public static final int tvError=0x7f04000b;
@@ -86,14 +86,19 @@ containing a value of this type.
         public static final int err_no_username=0x7f060004;
         public static final int err_upload=0x7f060006;
         public static final int err_wrong_username=0x7f060005;
+        public static final int exporting_image=0x7f060016;
         public static final int gallery_btn=0x7f06000a;
         public static final int hello_world=0x7f060002;
+        public static final int loading_online_gallery=0x7f060015;
         public static final int no_images=0x7f060011;
         public static final int picture_cam=0x7f06000c;
         public static final int picture_gallery=0x7f06000d;
         public static final int take_picture_btn=0x7f060009;
+        public static final int upload_complete=0x7f060018;
         public static final int uploaded_label=0x7f060013;
+        public static final int uploading_image=0x7f060017;
         public static final int user_welcome_text=0x7f060008;
+        public static final int wait=0x7f060014;
     }
     public static final class style {
         /** 

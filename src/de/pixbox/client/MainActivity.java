@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 	private Button galleryBtn;
 	private Button uploadImgBtn;
 	private static Bitmap bitmap;
-	private ProgressBar pb;
+	private ProgressDialog pd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +60,11 @@ public class MainActivity extends Activity {
 		takePictureBtn = (Button) findViewById(R.id.takePictureBtn);
 		galleryBtn = (Button) findViewById(R.id.galleryBtn);
 		uploadImgBtn = (Button) findViewById(R.id.uploadImgBtn);
-		pb = (ProgressBar) findViewById(R.id.progressBar1);
 		
-		// Hide uplad image button and progressbar
+		
+		
+		// Hide uplad image button 
 		hideView(uploadImgBtn);
-		hideView(pb);
 
 		// Read Sared Prefs
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
@@ -138,6 +138,15 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	
+	@Override
+	protected void onPause() {
+        super.onPause();
+        //Delete messages
+        tvError.setText("");
+    }
+
 
 	
 	
@@ -290,7 +299,11 @@ public class MainActivity extends Activity {
 	public void onUploadImgBtnClicked(View v) {
 		hideView(uploadImgBtn);
 		hideView(imgView);
-		showView(pb);
+		pd = ProgressDialog
+		.show(this,
+				getResources().getString(R.string.wait),
+				getResources().getString(
+						R.string.uploading_image), true);
 		uploadImage();
 	}
 	
@@ -348,17 +361,18 @@ public class MainActivity extends Activity {
 					// If Request was successfull
 					@Override
 					public void onSuccess(String response) {
+						pd.dismiss();
 						if (response.length() != 1) {
 							Log.d(TAG, "HTTP Request nicht erfolgreich. Antwort: " + response);
-							// Delete previous error messages
+							// Error Message
 							tvError.setText((getResources().getString(
 									R.string.err_upload)));
 						}
 						else{
-							hideView(pb);
 							Log.d(TAG, "HTTP Request erfolgreich. Antwort: " + response);
-							// Delete previous error messages
-							tvError.setText("");
+							
+							tvError.setText(getResources().getString(
+									R.string.upload_complete));
 						}
 					}
 					
@@ -369,7 +383,7 @@ public class MainActivity extends Activity {
 						showView(imgView);
 						showView(uploadImgBtn);
 						// Hide ProgrssBAr
-						hideView(pb);
+						pd.dismiss();
 						
 						// Show Error message
 						tvError.setText(getResources().getString(

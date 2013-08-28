@@ -21,5 +21,10 @@
     <string name="no_images">Currently you do not have any images online. Please upload an image.</string>
     <string name="back">Go back!</string>
     <string name="uploaded_label">Uploaded:</string>
+    <string name="wait">Please wait....</string>
+    <string name="loading_online_gallery">Loading online gallery</string>
+    <string name="exporting_image">Exporting image</string>
+    <string name="uploading_image">Uploading image</string>
+    <string name="upload_complete">Your picture has been successfully uploaded.\nView the image in your online gallery or upload another picture.</string>
 
 </resources>
