@@ -8,6 +8,7 @@
     <string name="err_no_username">Please type in a username</string>
     <string name="err_wrong_username">For your username only letters and numbers are allowed</string>
     <string name="err_upload">Failed to upload image. No connection to Server.\n Please check your connection and try again.</string>
+    <string name="err_connect">Failed to connect to the Server.\n Please check your connection and try again.</string>
     <string name="user_welcome_text">Welcome to Pixbox, %1$s!</string>
     <string name="take_picture_btn">Take picture!</string>
     <string name="gallery_btn">Gallery</string>
@@ -17,5 +18,8 @@
     <string name="cancel">Cancel</string>
     <string name="btn_upload_img">Upload image!</string>
     <string name="err_no_internet">You currently have no connection to the internet.\nPlease check connection and restart the App.</string>
+    <string name="no_images">Currently you do not have any images online. Please upload an image.</string>
+    <string name="back">Go back!</string>
+    <string name="uploaded_label">Uploaded:</string>
 
 </resources>

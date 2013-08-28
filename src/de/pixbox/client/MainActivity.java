@@ -32,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -275,8 +274,11 @@ public class MainActivity extends Activity {
 	 * @param v
 	 */
 	public void onGalleryBtnClicked(View v) {
-
 		
+		Intent i = new Intent(this, GalleryActivity.class);
+		i.putExtra("userID", userID);
+		i.putExtra("username", username); 
+		startActivity(i);
 	}
 
 	
@@ -346,8 +348,13 @@ public class MainActivity extends Activity {
 					// If Request was successfull
 					@Override
 					public void onSuccess(String response) {
-						if (response != "1") {
-							// Hide Progressbar
+						if (response.length() != 1) {
+							Log.d(TAG, "HTTP Request nicht erfolgreich. Antwort: " + response);
+							// Delete previous error messages
+							tvError.setText((getResources().getString(
+									R.string.err_upload)));
+						}
+						else{
 							hideView(pb);
 							Log.d(TAG, "HTTP Request erfolgreich. Antwort: " + response);
 							// Delete previous error messages

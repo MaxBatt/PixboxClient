@@ -4,6 +4,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
  
+/**
+ * @author Max Batt
+ * Checks if the device has access to the internet	
+ */
 public class ConnectionCheck {
      
     private Context _context;
