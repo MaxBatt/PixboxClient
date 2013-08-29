@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 
 
 /**
+ * POJO Class for User: an object of the class can be created out of JSON representation
+ * 
  * @author Max Batt
- * POJO Class for Users.
- * An object of the class can be created out of JSON representation
  */
 public class User {
 	private String id;

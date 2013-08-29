@@ -5,8 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
  
 /**
- * @author Max Batt
- * Checks if the device has access to the internet	
+ * Checks if the device has access to the internet
+ *
+ * @author Max Batt	
  */
 public class ConnectionCheck {
      

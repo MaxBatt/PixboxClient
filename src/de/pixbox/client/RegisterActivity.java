@@ -23,8 +23,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
- * @author Max Batt
+ * User can register here by typing in a Username.</br>
+ * Is only called once after the first start of PixBox.</br>
+ * Webservice is called to create User in DB, Userdata is made permanently available in shared preferences.</br>
  * 
+ * @author Max Batt 
  */
 public class RegisterActivity extends Activity {
 
@@ -63,11 +66,16 @@ public class RegisterActivity extends Activity {
 					int after) {
 			}
 
+			/**
+			 * @params s 
+			 * Validates the Textfield for username everytime the user types a character.
+			 * Checks if the textfield is empty and that the username only consists of letters and numbers.
+			 */
 			@Override
 			public void afterTextChanged(Editable s) {
 
 				// No username is typed in
-				if (isEmpty(et)) {
+				if (usernameIsEmpty(et)) {
 					btn.setEnabled(false);
 					tv.setText(getResources().getString(
 							R.string.err_no_username));
@@ -91,9 +99,7 @@ public class RegisterActivity extends Activity {
 
 	}
 
-	/* Options Menu
-	 * 
-	 */
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -105,7 +111,7 @@ public class RegisterActivity extends Activity {
 	/**
 	 * Called if "Create User" Button is clicked
 	 * Creates an AsyncHTTPClient
-	 * Sends a HHTP-Request to create a nuw user with the typed in username
+	 * Sends a HHTP-Request to create a new user with the typed in username
 	 * Reports an error, if user already exits
 	 * If user can be created, the user information is passed back as a JSON-String
 	 * JSON-String is converted into a user object. 
@@ -181,11 +187,11 @@ public class RegisterActivity extends Activity {
 	
 	
 	/**
-	 * Checks if the username EditText is empty
+	 * Checks if the TextField for username is empty
 	 * @param etText
 	 * @return
 	 */
-	private boolean isEmpty(EditText etText) {
+	private boolean usernameIsEmpty(EditText etText) {
 		if (etText.getText().toString().trim().length() > 0) {
 			return false;
 		} else {

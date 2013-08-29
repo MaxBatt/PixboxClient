@@ -16,9 +16,12 @@ import android.widget.TextView;
 
 
 /**
- * @author Max Batt
- * List Adapter for GalleryList
- * Defines how every row in List is designed
+ * List Adapter for GalleryList. </br>
+ * Every single row of the PixBox listView is built here.</br>
+ * Thumbnails of the online images are downloaded and put into an imageView.</br>
+ * This is done in a cached way by a WebCachedImageView (see https://github.com/leocadiotine/WebCachedImageView)
+ * 
+ *  @author Max Batt
  */
 public class GalleryListAdapter extends ArrayAdapter<Image> {
 	private final Context context;

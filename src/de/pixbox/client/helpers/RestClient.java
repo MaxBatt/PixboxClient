@@ -5,8 +5,9 @@ import org.apache.http.client.params.ClientPNames;
 import com.loopj.android.http.*;
 
 /**
- * Asyncronous HTTP Client based on AsyncHTTPClient
- * This is a static class for the easy use of all kinds of HTTP Requests
+ * Asynchronous HTTP Client based on AsyncHTTPClient (see http://loopj.com/android-async-http/)</br>
+ * This is a static class for easy using HTTP Requests</br>
+ * 
  * @author Max Batt
  *
  */

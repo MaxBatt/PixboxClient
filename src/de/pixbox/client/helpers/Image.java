@@ -3,9 +3,9 @@ package de.pixbox.client.helpers;
 import com.google.gson.annotations.SerializedName;
 
 /**
+ * POJO Class for Image: an Object can be created out of JSON representation
+ * 
  * @author Max Batt
- * POJO Class for images
- * An Object can be created out of JSON representation
  */
 public class Image {
 	

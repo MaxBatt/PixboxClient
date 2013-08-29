@@ -33,6 +33,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * The main screen of the PixBox app.</br>
+ * There are two icons: "Get image" and "Your PixBox".</br>
+ * By clicking on "Get image" users can take a photo with their camera or pick an image from the Android gallery (or other galleries if available).</br>
+ * If an image is picked, it is shown in an imageView and the user can upload it to her PixBox (online storage) by clicking on "Upload".</br>
+ * By Clicking on "Your PixBox" the user gets to a list which shows all of the uploaded images.</br>
+ * 
+ * @author Max Batt
+ */
 public class MainActivity extends Activity {
 
 	public static final String PREFS = "PIXBOX_PREFS";
@@ -108,10 +117,11 @@ public class MainActivity extends Activity {
 	}
 
 	
-	/* (non-Javadoc)
+	/**
 	 * Show image always in thumbnail size
-	// This must be in onWindowFocusChanged to be able to measure actual view
+	/* This must be in onWindowFocusChanged to be able to measure actual view
 	 */
+	
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
@@ -218,8 +228,8 @@ public class MainActivity extends Activity {
 
 	
 	
-	/*
-	 * (non-Javadoc) Is executed after the "Get-Image-Intent" Works with the
+	/**
+	 * Is executed after the "Get-Image-Intent" Works with the
 	 * result image
 	 */
 	@Override
@@ -284,7 +294,7 @@ public class MainActivity extends Activity {
 	 */
 	public void onGalleryBtnClicked(View v) {
 		
-		Intent i = new Intent(this, GalleryActivity.class);
+		Intent i = new Intent(this, PixBoxActivity.class);
 		i.putExtra("userID", userID);
 		i.putExtra("username", username); 
 		startActivity(i);
