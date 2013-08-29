@@ -19,9 +19,13 @@ import de.pixbox.client.helpers.GalleryListAdapter;
 import de.pixbox.client.helpers.Image;
 import de.pixbox.client.helpers.RestClient;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
@@ -30,11 +34,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Shows a list of all uploaded images and their upload date. On click on an
@@ -46,7 +53,7 @@ import android.widget.ListView;
  * 
  */
 public class GalleryActivity extends ListActivity implements
-		OnItemClickListener, OnItemLongClickListener {
+		OnItemClickListener {
 
 	// ArrayList with all images
 	private ArrayList<Image> imageList;
@@ -143,6 +150,7 @@ public class GalleryActivity extends ListActivity implements
 					}
 				});
 
+		registerForContextMenu(this.getListView());
 	}
 
 	/*
@@ -157,13 +165,14 @@ public class GalleryActivity extends ListActivity implements
 		actPosition = position;
 
 		// Check if the file is already on SD Card. If not, download.
-		String imagePath = imageFolder + "/"
-				+ imageList.get(position).getFilename();
-		File file = new File(imagePath);
 
-		if (!file.exists()) {
+		String imagePath = imageFolder + "/"
+		+ imageList.get(position).getFilename();
+
+		if (!fileIsOnSDCard(imageList.get(position).getFilename())){
 			// Start AsyncTask downloading image
 			new DownloadFileFromURL().execute(imageList.get(position).getUrl());
+			openImageInGallery( imageFolder + "/" + imageList.get(position).getFilename());
 			System.out.println("Downloaded the file!");
 		} else {
 			openImageInGallery(imagePath);
@@ -173,14 +182,88 @@ public class GalleryActivity extends ListActivity implements
 	}
 
 	/*
-	 * (non-Javadoc) onItemLongClickListener for ListView. on Long click on an
-	 * item a menu is shown
+	 * (non-Javadoc) Open context menu on long click on a gallery item Options:
+	 * Send image, Copy public URL, Delete Image
 	 */
 	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view,
-			int position, long id) {
-		System.out.println("longclick");
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenu.ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		if (v.getId() == this.getListView().getId()) {
+			menu.setHeaderTitle(getResources().getString(
+					R.string.context_menu_title));
+			menu.add(0, v.getId(), 0,
+					getResources().getString(R.string.send_image));
+			menu.add(0, v.getId(), 1,
+					getResources().getString(R.string.copy_url));
+			menu.add(0, v.getId(), 2, getResources().getString(R.string.delete));
 
+			// System.out.println(image.getFilename());
+		}
+	}
+
+	/*
+	 * (non-Javadoc) Actions if an option in the context menu is clicked
+	 */
+	@SuppressLint("NewApi")
+	public boolean onContextItemSelected(MenuItem item) {
+		// Get infos about selected item
+		AdapterView.AdapterContextMenuInfo selectedItem = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		// Get the image of the clicked menu item
+		Image image = (Image) getListView().getItemAtPosition(
+				selectedItem.position);
+
+		// If send is clicked
+		if (item.getTitle() == getResources().getString(R.string.send_image)) {
+			if(!fileIsOnSDCard(image.getFilename())){
+				new DownloadFileFromURL().execute(image.getUrl());
+			}
+			
+			Intent i = new Intent(Intent.ACTION_SEND);
+			i.setType("image/jpg");
+			i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(imageFolder + "/" + image.getFilename())));
+			
+
+			startActivity(i);
+		}
+
+		// If 'Delete' is clicked
+		if (item.getTitle() == getResources().getString(R.string.delete)) {
+
+			// Asynctask for deleting image
+			DeleteImageFromGallery task = new DeleteImageFromGallery();
+			task.execute(image);
+
+			// Remove deleted item from list
+			adapter.remove(adapter.getItem(selectedItem.position));
+
+			// If there are no images in the list, show error
+			// message
+			if (adapter.isEmpty()) {
+				showDialog(getResources().getString(R.string.no_images));
+			}
+
+		}
+
+		// If user 'Copy to Clipboard' is clicked
+		if (item.getTitle() == getResources().getString(R.string.copy_url)) {
+
+			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+				android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+				ClipData clip = ClipData.newPlainText("label", image.getUrl());
+				clipboard.setPrimaryClip(clip);
+			} else {
+				android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+				clipboard.setText(image.getUrl());
+			}
+			// display in short period of time
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.url_copied),
+					Toast.LENGTH_LONG).show();
+
+		}
 		return true;
 	}
 
@@ -200,11 +283,9 @@ public class GalleryActivity extends ListActivity implements
 		protected void onPreExecute() {
 			super.onPreExecute();
 			// Show ProgressDialog until Gallery is loaded
-			pd = ProgressDialog
-					.show(GalleryActivity.this,
-							getResources().getString(R.string.wait),
-							getResources().getString(
-									R.string.exporting_image), true);
+			pd = ProgressDialog.show(GalleryActivity.this, getResources()
+					.getString(R.string.wait),
+					getResources().getString(R.string.exporting_image), true);
 		}
 
 		/**
@@ -250,7 +331,6 @@ public class GalleryActivity extends ListActivity implements
 			return null;
 		}
 
-		
 		protected void onProgressUpdate(String... progress) {
 
 		}
@@ -264,15 +344,99 @@ public class GalleryActivity extends ListActivity implements
 			String imagePath = imageFolder + "/"
 					+ imageList.get(actPosition).getFilename();
 			Log.d("pixbox", "Downloaded file to " + imagePath);
-			
+
 			// Dismiss ProgressDialog
 			pd.dismiss();
-			
-			// Open gallery with given image
-			openImageInGallery(imagePath);
+		}
+
+	}
+
+	/**
+	 * AsyncTask for Deleting an image from the gallery over context menu
+	 * 
+	 * @author Max Batt
+	 * 
+	 */
+	class DeleteImageFromGallery extends AsyncTask<Image, Image, String> {
+
+		/**
+		 * Before starting background thread Show Progress Bar Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// Show ProgressDialog until Gallery is loaded
+			pd = ProgressDialog.show(GalleryActivity.this, getResources()
+					.getString(R.string.wait),
+					getResources().getString(R.string.exporting_image), true);
+		}
+
+		/**
+		 * Deleting File from Server and from SD Card (if exists) from the
+		 * Gallery List
+		 * */
+		@Override
+		protected String doInBackground(Image... images) {
+			Image image = images[0];
+
+			// Downlaod JSON list with all image URLS and infos from server with
+			// AsyncHTTPClient
+			RestClient.get("pictures/delete/?p=" + image.getId(), null,
+					new AsyncHttpResponseHandler() {
+
+						// If request is successful
+						@Override
+						public void onSuccess(String response) {
+
+							if (response.length() == 1) {
+								Log.d("PixBox: ", "Image Deleted");
+							} else {
+								Log.d("PixBox: ", "Couldnt delete image: "
+										+ response);
+							}
+						}
+
+						// If request was not succesful, show error
+						@Override
+						public void onFailure(Throwable error, String content) {
+							Log.d("PixBox: ",
+									"Delete File HTTP Request Failed: "
+											+ error.getMessage());
+						}
+					});
+
+			File file = new File(imageFolder + "/" + image.getFilename());
+			if (file.exists()) {
+				file.delete();
+			}
+
+			return null;
+		}
+
+		protected void onProgressUpdate(String... progress) {
 
 		}
 
+		// After background task open the image in gallery.
+		@Override
+		protected void onPostExecute(String file_url) {
+
+			pd.dismiss();
+		}
+
+	}
+
+	
+	// Checks if a file with the given filename is on the SD card in the pixbox folder
+	public boolean fileIsOnSDCard(String filename) {
+		
+		File file = new File(imageFolder + "/" + filename);
+
+		if (file.exists()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**

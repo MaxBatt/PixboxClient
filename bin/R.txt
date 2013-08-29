@@ -33,6 +33,9 @@ int string app_name 0x7f060000
 int string back 0x7f060012
 int string btn_upload_img 0x7f06000f
 int string cancel 0x7f06000e
+int string context_menu_title 0x7f060019
+int string copy_url 0x7f06001b
+int string delete 0x7f06001d
 int string err_connect 0x7f060007
 int string err_general 0x7f060003
 int string err_no_internet 0x7f060010
@@ -46,10 +49,12 @@ int string loading_online_gallery 0x7f060015
 int string no_images 0x7f060011
 int string picture_cam 0x7f06000c
 int string picture_gallery 0x7f06000d
+int string send_image 0x7f06001a
 int string take_picture_btn 0x7f060009
 int string upload_complete 0x7f060018
 int string uploaded_label 0x7f060013
 int string uploading_image 0x7f060017
+int string url_copied 0x7f06001c
 int string user_welcome_text 0x7f060008
 int string wait 0x7f060014
 int style AppBaseTheme 0x7f070000

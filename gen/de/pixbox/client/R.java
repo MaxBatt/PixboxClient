@@ -80,6 +80,9 @@ containing a value of this type.
         public static final int back=0x7f060012;
         public static final int btn_upload_img=0x7f06000f;
         public static final int cancel=0x7f06000e;
+        public static final int context_menu_title=0x7f060019;
+        public static final int copy_url=0x7f06001b;
+        public static final int delete=0x7f06001d;
         public static final int err_connect=0x7f060007;
         public static final int err_general=0x7f060003;
         public static final int err_no_internet=0x7f060010;
@@ -93,10 +96,12 @@ containing a value of this type.
         public static final int no_images=0x7f060011;
         public static final int picture_cam=0x7f06000c;
         public static final int picture_gallery=0x7f06000d;
+        public static final int send_image=0x7f06001a;
         public static final int take_picture_btn=0x7f060009;
         public static final int upload_complete=0x7f060018;
         public static final int uploaded_label=0x7f060013;
         public static final int uploading_image=0x7f060017;
+        public static final int url_copied=0x7f06001c;
         public static final int user_welcome_text=0x7f060008;
         public static final int wait=0x7f060014;
     }

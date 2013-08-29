@@ -26,5 +26,10 @@
     <string name="exporting_image">Exporting image</string>
     <string name="uploading_image">Uploading image</string>
     <string name="upload_complete">Your picture has been successfully uploaded.\nView the image in your online gallery or upload another picture.</string>
+    <string name="context_menu_title">Image</string>
+    <string name="send_image">Send</string>
+    <string name="copy_url">Copy public URL to clipboard</string>
+    <string name="url_copied">A public URL of the image has been copied to clipboard</string>
+    <string name="delete">Delete</string>
 
 </resources>
