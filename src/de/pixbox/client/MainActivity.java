@@ -28,6 +28,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -61,8 +62,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_activity);
+		
+		//Remove TitleBar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+		
+		setContentView(R.layout.main);
+		
+		
 		tvUserWelcome = (TextView) findViewById(R.id.tvUserWelcome);
 		tvError = (TextView) findViewById(R.id.tvError);
 		imgView = (ImageView) findViewById(R.id.imgView);
@@ -72,9 +79,10 @@ public class MainActivity extends Activity {
 		
 		
 		
-		// Hide uplad image button 
-		hideView(uploadImgBtn);
+		// Hide uplad image button
 
+		hideView(uploadImgBtn);
+		
 		// Read Sared Prefs
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
 
@@ -126,10 +134,13 @@ public class MainActivity extends Activity {
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
 		if (hasFocus == true) {
+			
 			View parentView = findViewById(R.id.mainContent);
+			
 			int height = parentView.getHeight();
 			int width = parentView.getWidth();
 
+			
 			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) imgView
 					.getLayoutParams();
 			int percentHeight = (int) Math.round(height * .3);
@@ -137,6 +148,7 @@ public class MainActivity extends Activity {
 			lp.height = percentHeight;
 			lp.width = percentWidth;
 			imgView.setLayoutParams(lp);
+			
 		}
 	}
 	

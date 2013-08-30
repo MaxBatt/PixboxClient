@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -65,6 +66,10 @@ public class PixBoxActivity extends ListActivity implements
 
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
+		
+		//Remove TitleBar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 
 		// Show ProgressDialog until Gallery is loaded
 		pd = ProgressDialog
