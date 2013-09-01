@@ -64,6 +64,8 @@ public class PixBoxActivity extends ListActivity implements
 	// ProgressDialog
 	private ProgressDialog pd;
 
+	
+	
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		
@@ -154,6 +156,8 @@ public class PixBoxActivity extends ListActivity implements
 		registerForContextMenu(this.getListView());
 	}
 
+	
+	
 	/*
 	 * (non-Javadoc) onItemClickListener for ListView. on Click the image is
 	 * opened in gallery
@@ -182,6 +186,8 @@ public class PixBoxActivity extends ListActivity implements
 
 	}
 
+	
+	
 	/*
 	 * (non-Javadoc) Open context menu on long click on a gallery item Options:
 	 * Send image, Copy public URL, Delete Image
@@ -203,6 +209,8 @@ public class PixBoxActivity extends ListActivity implements
 		}
 	}
 
+	
+	
 	/*
 	 * (non-Javadoc) Actions if an option in the context menu is clicked
 	 */
@@ -271,6 +279,9 @@ public class PixBoxActivity extends ListActivity implements
 		return true;
 	}
 
+	
+	
+		
 	/**
 	 * AsyncTask for Downloading image, writing it to local Storage and open in
 	 * Gallery
@@ -355,6 +366,8 @@ public class PixBoxActivity extends ListActivity implements
 
 	}
 
+	
+	
 	/**
 	 * AsyncTask for Deleting an image from the gallery over context menu
 	 * 
@@ -431,6 +444,7 @@ public class PixBoxActivity extends ListActivity implements
 	}
 
 	
+	
 	// Checks if a file with the given filename is on the SD card in the pixbox folder
 	public boolean fileIsOnSDCard(String filename) {
 		
@@ -443,6 +457,8 @@ public class PixBoxActivity extends ListActivity implements
 		}
 	}
 
+	
+	
 	/**
 	 * Opens an image from given Path in the (android) gallery
 	 * 
@@ -455,6 +471,8 @@ public class PixBoxActivity extends ListActivity implements
 		startActivity(intent);
 	}
 
+	
+	
 	/**
 	 * Show dialog for error message with given MSG param
 	 * 
@@ -474,6 +492,8 @@ public class PixBoxActivity extends ListActivity implements
 				}).create().show();
 	}
 
+	
+	
 	/**
 	 * Creates a folder with given path
 	 * 
