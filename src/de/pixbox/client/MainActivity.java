@@ -162,6 +162,7 @@ public class MainActivity extends Activity {
 	}
 	
 	
+	
 	@Override
 	protected void onPause() {
         super.onPause();
@@ -170,7 +171,6 @@ public class MainActivity extends Activity {
     }
 
 
-	
 	
 	/**
 	 * Runs if the "Take picture" Button is clicked Opens a dialog, with which
@@ -241,8 +241,8 @@ public class MainActivity extends Activity {
 	
 	
 	/**
-	 * Is executed after the "Get-Image-Intent" Works with the
-	 * result image
+	 * Is executed after a picture has been taken by camera or gallery
+	 * Shows the result image in an imageView and displays an upload button
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -301,20 +301,6 @@ public class MainActivity extends Activity {
 	
 	
 	/**
-	 * Is executed if the Gallery Button is clicked
-	 * @param v
-	 */
-	public void onGalleryBtnClicked(View v) {
-		
-		Intent i = new Intent(this, PixBoxActivity.class);
-		i.putExtra("userID", userID);
-		i.putExtra("username", username); 
-		startActivity(i);
-	}
-
-	
-	
-	/**
 	 * Is executed if the Upload Image Button is clicked
 	 * @param v
 	 */
@@ -328,6 +314,24 @@ public class MainActivity extends Activity {
 						R.string.uploading_image), true);
 		uploadImage();
 	}
+	
+	
+	
+	/**
+	 * Is executed if the Gallery Button is clicked
+	 * @param v
+	 */
+	public void onGalleryBtnClicked(View v) {
+		
+		Intent i = new Intent(this, PixBoxActivity.class);
+		i.putExtra("userID", userID);
+		i.putExtra("username", username); 
+		startActivity(i);
+	}
+
+	
+	
+	
 	
 	
 	
