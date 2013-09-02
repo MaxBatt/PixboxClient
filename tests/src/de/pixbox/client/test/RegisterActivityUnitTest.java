@@ -61,7 +61,7 @@ public class RegisterActivityUnitTest extends ActivityUnitTestCase<RegisterActiv
 	    assertEquals("RegisterButton must be disabled if EditText for username is empty", registerButton.isEnabled(), false);
 	  }
 	
-	
+	@SmallTest
 	public void testValidation() throws Exception {
 
 		// Clear username

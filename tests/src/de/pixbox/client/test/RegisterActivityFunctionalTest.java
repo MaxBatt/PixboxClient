@@ -1,13 +1,15 @@
 package de.pixbox.client.test;
 
+import java.util.Random;
+
 import de.pixbox.client.MainActivity;
 import de.pixbox.client.RegisterActivity;
 import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class RegisterActivityFunctionalTest extends
 		ActivityInstrumentationTestCase2<RegisterActivity> {
@@ -39,7 +41,7 @@ public class RegisterActivityFunctionalTest extends
 		
 	}
 
-
+	@SmallTest
 	public void testStartMainActivity() throws Exception {
 
 		// Clear username
@@ -49,7 +51,8 @@ public class RegisterActivityFunctionalTest extends
 		registerActivity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				editUsername.setText("dfhjd");
+				// Set a random String as username
+				editUsername.setText(createRandomString());
 			}
 		});
 
@@ -72,6 +75,18 @@ public class RegisterActivityFunctionalTest extends
 	        .waitForActivityWithTimeout(2000);
 	    assertNotNull(mainActivity);
 
+	}
+	
+	
+	private String createRandomString(){
+		char[] chars = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 6; i++) {
+		    char c = chars[random.nextInt(chars.length)];
+		    sb.append(c);
+		}
+		return sb.toString();
 	}
 
 }
