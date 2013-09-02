@@ -52,7 +52,7 @@ containing a value of this type.
         public static final int upload_icon=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f040012;
+        public static final int action_settings=0x7f040013;
         public static final int disk=0x7f040002;
         public static final int editUsername=0x7f04000f;
         public static final int galleryBtn=0x7f04000a;
@@ -62,6 +62,7 @@ containing a value of this type.
         public static final int no_cache=0x7f040000;
         public static final int okBtn=0x7f040011;
         public static final int progressBar1=0x7f04000e;
+        public static final int registerButton=0x7f040012;
         public static final int tableRow1=0x7f040008;
         public static final int tableRow2=0x7f04000b;
         public static final int takePictureBtn=0x7f040009;
@@ -101,11 +102,11 @@ containing a value of this type.
         public static final int err_wrong_username=0x7f060007;
         public static final int exporting_image=0x7f060018;
         public static final int gallery_btn=0x7f06000c;
-        public static final int hello_world=0x7f060002;
         public static final int loading_online_gallery=0x7f060017;
         public static final int no_images=0x7f060013;
         public static final int picture_cam=0x7f06000e;
         public static final int picture_gallery=0x7f06000f;
+        public static final int register_button=0x7f060002;
         public static final int send_image=0x7f06001c;
         public static final int take_picture_btn=0x7f06000b;
         public static final int type_in_user=0x7f060004;

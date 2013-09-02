@@ -32,8 +32,8 @@ import android.widget.TextView;
  */
 public class RegisterActivity extends Activity {
 
-	private EditText et;
-	private Button btn;
+	private EditText editUsername;
+	private Button registerBtn;
 	private TextView tv;
 	private ProgressBar pb;
 	public static final String PREFS = "PIXBOX_PREFS";
@@ -48,19 +48,19 @@ public class RegisterActivity extends Activity {
 
 		setContentView(R.layout.register_activity);
 
-		et = (EditText) findViewById(R.id.editUsername);
-		btn = (Button) findViewById(R.id.okBtn);
+		editUsername = (EditText) findViewById(R.id.editUsername);
+		registerBtn = (Button) findViewById(R.id.registerButton);
 		tv = (TextView) findViewById(R.id.tvUserResult);
 		pb = (ProgressBar) findViewById(R.id.progressBar1);
 		pb.setVisibility(View.GONE);
 
-		btn.setEnabled(false);
+		registerBtn.setEnabled(false);
 
 		// Listener for any changes in the EditTest for Username
 		// checks if username only contains letters and numbers
 		// checks if username is empty
 
-		et.addTextChangedListener(new TextWatcher() {
+		editUsername.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
@@ -80,20 +80,20 @@ public class RegisterActivity extends Activity {
 			public void afterTextChanged(Editable s) {
 
 				// No username is typed in
-				if (usernameIsEmpty(et)) {
-					btn.setEnabled(false);
+				if (usernameIsEmpty(editUsername)) {
+					registerBtn.setEnabled(false);
 					tv.setText(getResources().getString(
 							R.string.err_no_username));
 				} else {
-					String username = et.getText().toString();
+					String username = editUsername.getText().toString();
 
 					// username got invalid chars
 					if (!username.matches("^[a-zA-Z0-9]+$")) {
-						btn.setEnabled(false);
+						registerBtn.setEnabled(false);
 						tv.setText(getResources().getString(
 								R.string.err_wrong_username));
 					} else {
-						btn.setEnabled(true);
+						registerBtn.setEnabled(true);
 						tv.setText("");
 					}
 
@@ -130,7 +130,7 @@ public class RegisterActivity extends Activity {
 
 		try {
 
-			String user = URLEncoder.encode(et.getText().toString(), "UTF-8");
+			String user = URLEncoder.encode(editUsername.getText().toString(), "UTF-8");
 			
 //			Send HTTP request for creating a user with given username 
 			RestClient.get("user/new/?u=" + user, null,

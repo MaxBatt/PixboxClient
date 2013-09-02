@@ -4,10 +4,11 @@ import de.pixbox.client.RegisterActivity;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.Button;
 
 public class RegisterActivityUnitTest extends ActivityUnitTestCase<RegisterActivity> {
 
-	private int buttonId;
+	private int registerButtonID;
 	private RegisterActivity activity;
 
 	public RegisterActivityUnitTest() {
@@ -27,12 +28,15 @@ public class RegisterActivityUnitTest extends ActivityUnitTestCase<RegisterActiv
 	@SmallTest
 	  public void testLayout() {
 	    
-	    
-	    assertEquals(1,1);
+		registerButtonID = de.pixbox.client.R.id.registerButton;
+	    assertNotNull("RegisterButton does not exist", activity.findViewById(registerButtonID));
+	    Button registerButton = (Button) activity.findViewById(registerButtonID);
+	    assertEquals("Incorrect label of the Register Button", activity.getResources().getString(de.pixbox.client.R.string.register_button), registerButton.getText());
 	  }
 	
 	protected void tearDown() throws Exception {
-		super.tearDown();
+
 	}
+		
 
 }
