@@ -11,7 +11,7 @@ int drawable take_picture_button 0x7f020005
 int drawable take_picture_icon 0x7f020006
 int drawable upload_button 0x7f020007
 int drawable upload_icon 0x7f020008
-int id action_settings 0x7f040013
+int id action_settings 0x7f040011
 int id disk 0x7f040002
 int id editUsername 0x7f04000f
 int id galleryBtn 0x7f04000a
@@ -19,16 +19,14 @@ int id imgView 0x7f040003
 int id mainContent 0x7f040006
 int id memory 0x7f040001
 int id no_cache 0x7f040000
-int id okBtn 0x7f040011
 int id progressBar1 0x7f04000e
-int id registerButton 0x7f040012
+int id registerButton 0x7f040010
 int id tableRow1 0x7f040008
 int id tableRow2 0x7f04000b
 int id takePictureBtn 0x7f040009
 int id textView1 0x7f040005
 int id tvError 0x7f04000d
 int id tvUploadInfo 0x7f040004
-int id tvUserResult 0x7f040010
 int id tvUserWelcome 0x7f040007
 int id uploadImgBtn 0x7f04000c
 int layout gallery_activity 0x7f030000

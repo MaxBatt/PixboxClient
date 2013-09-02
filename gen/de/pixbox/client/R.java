@@ -52,7 +52,7 @@ containing a value of this type.
         public static final int upload_icon=0x7f020008;
     }
     public static final class id {
-        public static final int action_settings=0x7f040013;
+        public static final int action_settings=0x7f040011;
         public static final int disk=0x7f040002;
         public static final int editUsername=0x7f04000f;
         public static final int galleryBtn=0x7f04000a;
@@ -60,16 +60,14 @@ containing a value of this type.
         public static final int mainContent=0x7f040006;
         public static final int memory=0x7f040001;
         public static final int no_cache=0x7f040000;
-        public static final int okBtn=0x7f040011;
         public static final int progressBar1=0x7f04000e;
-        public static final int registerButton=0x7f040012;
+        public static final int registerButton=0x7f040010;
         public static final int tableRow1=0x7f040008;
         public static final int tableRow2=0x7f04000b;
         public static final int takePictureBtn=0x7f040009;
         public static final int textView1=0x7f040005;
         public static final int tvError=0x7f04000d;
         public static final int tvUploadInfo=0x7f040004;
-        public static final int tvUserResult=0x7f040010;
         public static final int tvUserWelcome=0x7f040007;
         public static final int uploadImgBtn=0x7f04000c;
     }

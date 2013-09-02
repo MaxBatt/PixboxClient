@@ -34,7 +34,7 @@ public class RegisterActivity extends Activity {
 
 	private EditText editUsername;
 	private Button registerBtn;
-	private TextView tv;
+	private TextView tvError;
 	private ProgressBar pb;
 	public static final String PREFS = "PIXBOX_PREFS";
 
@@ -50,7 +50,7 @@ public class RegisterActivity extends Activity {
 
 		editUsername = (EditText) findViewById(R.id.editUsername);
 		registerBtn = (Button) findViewById(R.id.registerButton);
-		tv = (TextView) findViewById(R.id.tvUserResult);
+		tvError = (TextView) findViewById(R.id.tvError);
 		pb = (ProgressBar) findViewById(R.id.progressBar1);
 		pb.setVisibility(View.GONE);
 
@@ -82,7 +82,7 @@ public class RegisterActivity extends Activity {
 				// No username is typed in
 				if (usernameIsEmpty(editUsername)) {
 					registerBtn.setEnabled(false);
-					tv.setText(getResources().getString(
+					tvError.setText(getResources().getString(
 							R.string.err_no_username));
 				} else {
 					String username = editUsername.getText().toString();
@@ -90,11 +90,11 @@ public class RegisterActivity extends Activity {
 					// username got invalid chars
 					if (!username.matches("^[a-zA-Z0-9]+$")) {
 						registerBtn.setEnabled(false);
-						tv.setText(getResources().getString(
+						tvError.setText(getResources().getString(
 								R.string.err_wrong_username));
 					} else {
 						registerBtn.setEnabled(true);
-						tv.setText("");
+						tvError.setText("");
 					}
 
 				}
@@ -167,7 +167,7 @@ public class RegisterActivity extends Activity {
 //							If response is not a valid JSON string, it is an error message. Show it!
 							} catch (Exception e) {
 								System.out.println(e);
-								tv.setText(getResources().getString(
+								tvError.setText(getResources().getString(
 										R.string.err_general)
 										+ response);
 							}
@@ -178,7 +178,7 @@ public class RegisterActivity extends Activity {
 						public void onFailure(Throwable error, String content) {
 							// Do something with the response
 							pb.setVisibility(View.GONE);
-							tv.setText("An error occured: " + content);
+							tvError.setText("An error occured: " + content);
 						}
 					});
 
