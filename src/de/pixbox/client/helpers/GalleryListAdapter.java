@@ -3,6 +3,8 @@ package de.pixbox.client.helpers;
 
 import java.util.ArrayList;
 
+import com.loopj.android.image.SmartImageView;
+
 import de.pixbox.client.R;
 
 import android.content.Context;
@@ -10,7 +12,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WebCachedImageView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class GalleryListAdapter extends ArrayAdapter<Image> {
 	private final Context context;
 	private final ArrayList<Image> imageList;
 
-	private WebCachedImageView imgView;
+	private SmartImageView imgView;
 	private TextView tvUploadInfo;
 	
 
@@ -49,7 +50,7 @@ public class GalleryListAdapter extends ArrayAdapter<Image> {
 				
 		
 		// Put image in row via WebCachedImageView
-		imgView = (WebCachedImageView) rowView.findViewById(R.id.imgView);
+		imgView = (SmartImageView) rowView.findViewById(R.id.imgView);
 		imgView.setImageUrl(imageList.get(position).getThumbURL());
 		
 		tvUploadInfo = (TextView) rowView.findViewById(R.id.tvUploadInfo);
