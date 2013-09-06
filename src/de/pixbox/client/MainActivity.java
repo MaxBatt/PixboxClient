@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
 	private Button uploadImgBtn;
 	private static Bitmap bitmap;
 	private ProgressDialog pd;
+	private TextView uploadLabel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class MainActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		
-		setContentView(R.layout.main);
+		setContentView(R.layout.main_copy);
 		
 		
 		tvUserWelcome = (TextView) findViewById(R.id.tvUserWelcome);
@@ -76,12 +77,14 @@ public class MainActivity extends Activity {
 		takePictureBtn = (Button) findViewById(R.id.takePictureBtn);
 		galleryBtn = (Button) findViewById(R.id.galleryBtn);
 		uploadImgBtn = (Button) findViewById(R.id.uploadImgBtn);
+		uploadLabel = (TextView) findViewById(R.id.uploadLabel);
 		
 		
 		
 		// Hide uplad image button
 
 		hideView(uploadImgBtn);
+		hideView(uploadLabel);
 		
 		// Read Sared Prefs
 		SharedPreferences settings = getSharedPreferences(PREFS, 0);
@@ -130,6 +133,7 @@ public class MainActivity extends Activity {
 	/* This must be in onWindowFocusChanged to be able to measure actual view
 	 */
 	
+	/*
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
@@ -151,6 +155,7 @@ public class MainActivity extends Activity {
 			
 		}
 	}
+	*/
 	
 	
 
@@ -294,6 +299,7 @@ public class MainActivity extends Activity {
 
 			// Make Upload Image Button visible
 			showView(uploadImgBtn);
+			showView(uploadLabel);
 		}
 
 	}
@@ -306,6 +312,7 @@ public class MainActivity extends Activity {
 	 */
 	public void onUploadImgBtnClicked(View v) {
 		hideView(uploadImgBtn);
+		hideView(uploadLabel);
 		hideView(imgView);
 		pd = ProgressDialog
 		.show(this,
@@ -408,6 +415,7 @@ public class MainActivity extends Activity {
 						// Still show ImageView and Upload Button for coming uploads 
 						showView(imgView);
 						showView(uploadImgBtn);
+						showView(uploadLabel);
 						// Hide ProgrssBAr
 						pd.dismiss();
 						
