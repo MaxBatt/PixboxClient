@@ -11,14 +11,12 @@ public final class R {
     public static final class attr {
     }
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
-
+        /** 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
         public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
         public static final int border=0x7f020000;
@@ -26,15 +24,12 @@ public final class R {
         public static final int my_pixbox=0x7f020002;
         public static final int my_pixbox_pressed=0x7f020003;
         public static final int pixbox_button=0x7f020004;
-        public static final int pixbox_icon=0x7f020005;
-        public static final int take_picture=0x7f020006;
-        public static final int take_picture_button=0x7f020007;
-        public static final int take_picture_icon=0x7f020008;
-        public static final int take_picture_pressed=0x7f020009;
-        public static final int upload=0x7f02000a;
-        public static final int upload_button=0x7f02000b;
-        public static final int upload_icon=0x7f02000c;
-        public static final int upload_pressed=0x7f02000d;
+        public static final int take_picture=0x7f020005;
+        public static final int take_picture_button=0x7f020006;
+        public static final int take_picture_pressed=0x7f020007;
+        public static final int upload=0x7f020008;
+        public static final int upload_button=0x7f020009;
+        public static final int upload_pressed=0x7f02000a;
     }
     public static final class id {
         public static final int action_settings=0x7f080010;
