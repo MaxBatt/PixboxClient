@@ -1,96 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainContent"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true" >
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvUserWelcome"
-       android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="Welcome to PicBox!"
-        android:textSize="24sp" />
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:weightSum="1" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
+            android:id="@+id/tvUserWelcome"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:weightSum="1" >
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Welcome to PicBox!"
+            android:textSize="24sp"
+            android:layout_gravity="center"/>
 
-            <Button
+    <RelativeLayout
+            android:layout_marginTop="45dp"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="left|center_vertical">
+
+        <Button
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/takePictureBtn"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.08"
-                android:background="@drawable/take_picture_button"
-                android:onClick="onPictureBtnClicked" />
+                android:background="@drawable/take_picture"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/space1"
+                android:onClick="onPictureBtnClicked"/>
 
-            <Button
+        <Button
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/galleryBtn"
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="120dp"
-                android:background="@drawable/pixbox_button"
+                android:background="@drawable/my_pixbox"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/space1"
                 android:onClick="onGalleryBtnClicked" />
-        </LinearLayout>
-    </TableRow>
 
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:weightSum="1" >
-    </TableRow>
+        <TextView
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/space1"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
 
-    
 
-    
+    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="104dp"
-        android:layout_height="104dp"
-        android:layout_below="@+id/tableRow1"
-        android:layout_centerHorizontal="true" 
-        android:layout_marginTop="40dp"/>
 
-    <Button
-        android:id="@+id/uploadImgBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/imgView"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/upload_button"
-        android:onClick="onUploadImgBtnClicked" 
-        android:layout_marginTop="30dp"/>
-    
-    <TextView
-        android:id="@+id/tvError"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/uploadImgBtn"
-        android:gravity="center"
-        android:layout_marginTop="60dp"/>
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="left|center_vertical"
 
-    
+            >
 
-</RelativeLayout>
+        <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/label1"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/space2"
+                android:text="Take picture!"
+                android:layout_alignParentLeft="true"
+                android:gravity="right"
+                android:textSize="10dp"/>
+
+        <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/label2"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/space2"
+                android:text="My PixBox"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:textSize="10dp"/>
+
+
+
+        <TextView
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/space2"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left|center_vertical"
+
+            >
+
+
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imgView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="23dp"/>
+
+        <Button
+                android:id="@+id/uploadImgBtn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_below="@+id/imgView"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/upload"
+                android:onClick="onUploadImgBtnClicked"
+                android:layout_marginTop="30dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload!"
+                android:id="@+id/uploadLabel"
+                android:layout_below="@+id/uploadImgBtn"
+                android:layout_centerHorizontal="true"
+                android:textSize="10dp"/>
+
+        <TextView
+                android:id="@+id/tvError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/uploadImgBtn"
+                android:gravity="center"
+                android:layout_marginTop="60dp"/>
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
