@@ -82,8 +82,8 @@ public final class R {
         public static final int err_upload=0x7f050008;
         public static final int err_wrong_username=0x7f050007;
         public static final int exporting_image=0x7f050018;
-        public static final int gallery_btn=0x7f05000c;
         public static final int loading_online_gallery=0x7f050017;
+        public static final int my_pixbox_btn=0x7f05000c;
         public static final int no_images=0x7f050013;
         public static final int picture_cam=0x7f05000e;
         public static final int picture_gallery=0x7f05000f;

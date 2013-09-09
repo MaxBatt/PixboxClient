@@ -13,7 +13,7 @@
     <string name="err_connect">Failed to connect to the Server.\n Please check your connection and try again.</string>
     <string name="user_welcome_text">Welcome to Pixbox, %1$s!</string>
     <string name="take_picture_btn">Take picture!</string>
-    <string name="gallery_btn">Gallery</string>
+    <string name="my_pixbox_btn">My PixBox</string>
     <string name="add_photo_dialog">Take picture</string>
     <string name="picture_cam">Take a photo with your camera</string>
     <string name="picture_gallery">Choose a picture from Gallery</string>
