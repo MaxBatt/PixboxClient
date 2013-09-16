@@ -42,15 +42,16 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 /**
- * Shows a list of all uploaded images and their upload date. </br>
- * On click on an image the image is opened in the Android galler (or other, if available). </br>
- * On long click on an image the user can send the image to other applications, copy the images public URL to clipboard and delete it from the PixBox.</br>
- *  
+ * Shows a list of all uploaded images and their upload date. </br> On click on
+ * an image the image is opened in the Android galler (or other, if available).
+ * </br> On long click on an image the user can send the image to other
+ * applications, copy the images public URL to clipboard and delete it from the
+ * PixBox.</br>
+ * 
  * @author Max Batt
  * 
  */
-public class PixBoxActivity extends ListActivity implements
-		OnItemClickListener {
+public class PixBoxActivity extends ListActivity implements OnItemClickListener {
 
 	// ArrayList with all images
 	private ArrayList<Image> imageList;
@@ -64,14 +65,11 @@ public class PixBoxActivity extends ListActivity implements
 	// ProgressDialog
 	private ProgressDialog pd;
 
-	
-	
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		
-		//Remove TitleBar
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+		// Remove TitleBar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		// Show ProgressDialog until Gallery is loaded
 		pd = ProgressDialog
@@ -156,8 +154,6 @@ public class PixBoxActivity extends ListActivity implements
 		registerForContextMenu(this.getListView());
 	}
 
-	
-	
 	/*
 	 * (non-Javadoc) onItemClickListener for ListView. on Click the image is
 	 * opened in gallery
@@ -172,12 +168,13 @@ public class PixBoxActivity extends ListActivity implements
 		// Check if the file is already on SD Card. If not, download.
 
 		String imagePath = imageFolder + "/"
-		+ imageList.get(position).getFilename();
+				+ imageList.get(position).getFilename();
 
-		if (!fileIsOnSDCard(imageList.get(position).getFilename())){
+		if (!fileIsOnSDCard(imageList.get(position).getFilename())) {
 			// Start AsyncTask downloading image
 			new DownloadFileFromURL().execute(imageList.get(position).getUrl());
-			openImageInGallery( imageFolder + "/" + imageList.get(position).getFilename());
+			openImageInGallery(imageFolder + "/"
+					+ imageList.get(position).getFilename());
 			System.out.println("Downloaded the file!");
 		} else {
 			openImageInGallery(imagePath);
@@ -186,8 +183,6 @@ public class PixBoxActivity extends ListActivity implements
 
 	}
 
-	
-	
 	/*
 	 * (non-Javadoc) Open context menu on long click on a gallery item Options:
 	 * Send image, Copy public URL, Delete Image
@@ -209,8 +204,6 @@ public class PixBoxActivity extends ListActivity implements
 		}
 	}
 
-	
-	
 	/*
 	 * (non-Javadoc) Actions if an option in the context menu is clicked
 	 */
@@ -225,18 +218,22 @@ public class PixBoxActivity extends ListActivity implements
 
 		// If send is clicked
 		if (item.getTitle() == getResources().getString(R.string.send_image)) {
-			
+
 			// Check, if file is already on SD Card
-			if(!fileIsOnSDCard(image.getFilename())){
+			if (!fileIsOnSDCard(image.getFilename())) {
 				// If not download via AsyncTask
 				new DownloadFileFromURL().execute(image.getUrl());
 			}
-			
-			// Generating Intent, so that all Applications which can work with images get the intent
+
+			// Generating Intent, so that all Applications which can work with
+			// images get the intent
 			Intent i = new Intent(Intent.ACTION_SEND);
 			i.setType("image/jpg");
-			i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(imageFolder + "/" + image.getFilename())));
-			//Start Intent
+			i.putExtra(
+					Intent.EXTRA_STREAM,
+					Uri.fromFile(new File(imageFolder + "/"
+							+ image.getFilename())));
+			// Start Intent
 			startActivity(i);
 		}
 
@@ -279,9 +276,6 @@ public class PixBoxActivity extends ListActivity implements
 		return true;
 	}
 
-	
-	
-		
 	/**
 	 * AsyncTask for Downloading image, writing it to local Storage and open in
 	 * Gallery
@@ -366,8 +360,6 @@ public class PixBoxActivity extends ListActivity implements
 
 	}
 
-	
-	
 	/**
 	 * AsyncTask for Deleting an image from the gallery over context menu
 	 * 
@@ -443,11 +435,10 @@ public class PixBoxActivity extends ListActivity implements
 
 	}
 
-	
-	
-	// Checks if a file with the given filename is on the SD card in the pixbox folder
+	// Checks if a file with the given filename is on the SD card in the pixbox
+	// folder
 	public boolean fileIsOnSDCard(String filename) {
-		
+
 		File file = new File(imageFolder + "/" + filename);
 
 		if (file.exists()) {
@@ -457,8 +448,6 @@ public class PixBoxActivity extends ListActivity implements
 		}
 	}
 
-	
-	
 	/**
 	 * Opens an image from given Path in the (android) gallery
 	 * 
@@ -471,8 +460,6 @@ public class PixBoxActivity extends ListActivity implements
 		startActivity(intent);
 	}
 
-	
-	
 	/**
 	 * Show dialog for error message with given MSG param
 	 * 
@@ -492,8 +479,6 @@ public class PixBoxActivity extends ListActivity implements
 				}).create().show();
 	}
 
-	
-	
 	/**
 	 * Creates a folder with given path
 	 * 
