@@ -41,7 +41,7 @@
         value="bin" />
 
     <property
-        name="lib.dir"
+        name="libs.dir"
         value="libs" />
 
     <property
