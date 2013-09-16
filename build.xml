@@ -140,7 +140,18 @@
     
     
     
-    
+    <target name="checkstyle">
+		  
+		  <taskdef resource="checkstyletask.properties"
+		           classpath="/opt/checkstyle/checkstyle-5.6-all.jar"/>
+		  
+		  <checkstyle config="conf/checkstyle-android.xml" maxErrors="100">
+		    <fileset dir="src" includes="**/*.java"/>
+
+		    <!-- Location of cache-file. Something that is project specific -->
+		    <property key="checkstyle.cache.file" file="target/cachefile"/>
+		  </checkstyle>
+	  </target>
     
     
     
