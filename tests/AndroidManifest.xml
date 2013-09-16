@@ -8,7 +8,7 @@
 
     <instrumentation
         android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"
-        android:targetPackage="de.pixbox.client" />
+        android:targetPackage="de.pixbox.client.test" />
 
     <application
         android:icon="@drawable/ic_launcher"
