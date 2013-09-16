@@ -3,43 +3,9 @@
     name="MainActivity"
     default="help" >
 
-    <!--
-         The local.properties file is created and updated by the 'android' tool.
-         It contains the path to the SDK. It should *NOT* be checked into
-         Version Control Systems.
-    -->
-
     <property file="local.properties" />
 
-    <!--
-         The ant.properties file can be created by you. It is only edited by the
-         'android' tool to add properties to it.
-         This is the place to change some Ant specific build properties.
-         Here are some properties you may want to change/update:
-
-         source.dir
-             The name of the source directory. Default is 'src'.
-         out.dir
-             The name of the output directory. Default is 'bin'.
-
-         For other overridable properties, look at the beginning of the rules
-         files in the SDK, at tools/ant/build.xml
-
-         Properties related to the SDK location or the project target should
-         be updated using the 'android' tool with the 'update' action.
-
-         This file is an integral part of the build system for your
-         application and should be checked into Version Control Systems.
-    -->
-
     <property file="ant.properties" />
-
-    <!--
-         if sdk.dir was not set from one of the property file, then
-         get it from the ANDROID_HOME env var.
-         This must be done before we load project.properties since
-         the proguard config can use sdk.dir
-    -->
 
     <property environment="env" />
 
@@ -50,18 +16,6 @@
         <isset property="env.ANDROID_HOME" />
     </condition>
 
-    <!--
-         The project.properties file is created and updated by the 'android'
-         tool, as well as ADT.
-
-         This contains project specific properties such as project target, and library
-         dependencies. Lower level build properties are stored in ant.properties
-         (or in .classpath for Eclipse projects).
-
-         This file is an integral part of the build system for your
-         application and should be checked into Version Control Systems.
-    -->
-
     <loadproperties srcFile="project.properties" />
 
     <!-- quick check on sdk.dir -->
@@ -70,29 +24,59 @@
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
 
-    <property
-        name="src-dir"
-        value="src" /> <!-- change me -->
+    <!--
+    *
+    *
+    * Set Variables
+    *
+    *
+    -->
 
     <property
-        name="bin-dir"
-        value="bin" /> <!-- change me -->
+        name="src.dir"
+        value="src" />
+
+    <property
+        name="bin.dir"
+        value="bin" />
+
+    <property
+        name="lib.dir"
+        value="libs" />
 
     <property
         name="findbugs.home"
-        value="/opt/findbugs" /> <!-- change me -->
+        value="/opt/findbugs" />
 
     <property
-        name="android-jar"
-        value="${sdk.dir}/platforms/android-16/android.jar" /> <!-- change me -->
+        name="checkstyle.home"
+        value="/opt/checkstyle" />
 
     <property
-        name="reports-folder"
-        value="code-analysis-reports" /> <!-- change me -->
+        name="pmd.home"
+        value="/opt/pmd" />
 
     <property
-        name="package-to-analyse"
-        value="de.pixbox.client.*" /> <!-- change me -->
+        name="config.dir"
+        value="conf" />
+
+    <property
+        name="reports.dir"
+        value="code-analysis-reports" />
+
+    <property
+        name="package.to.analyse"
+        value="de.pixbox.client.*" />
+
+    <property
+        name="android.jar"
+        value="${sdk.dir}/platforms/android-16/android.jar" />
+
+    <!--
+    *
+    * Findbugs
+    *
+    -->
 
     <path id="findbugs.dir.jars" >
 
@@ -109,44 +93,50 @@
 
     <target name="findbugs" >
 
-        <mkdir dir="${reports-folder}" />
+        <mkdir dir="${reports.dir}" />
 
         <findbugs
             home="${findbugs.home}"
-            onlyAnalyze="${package-to-analyse}"
+            onlyAnalyze="${package.to.analyse}"
             output="xml"
-            outputFile="${reports-folder}/findbugs-report.xml" >
+            outputFile="${reports.dir}/findbugs-report.xml" >
 
-            <sourcePath path="${src-dir}" />
+            <sourcePath path="${src.dir}" />
 
-            <class location="${bin-dir}" />
+            <class location="${bin.dir}" />
 
-            <auxClasspath path="${android-jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
+            <auxClasspath path="${android.jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
 
-            <auxClasspath path="libs/android-async-http-1.4.3.jar" />
+            <auxClasspath path="${libs.dir}/android-async-http-1.4.3.jar" />
 
-            <auxClasspath path="libs/android-smart-image-view-1.0.0.jar" />
+            <auxClasspath path="${libs.dir}/android-smart-image-view-1.0.0.jar" />
 
-            <auxClasspath path="libs/gson-2.2.2.jar" />
+            <auxClasspath path="${libs.dir}/gson-2.2.2.jar" />
 
-            <auxClasspath path="libs/android-junit-report-1.5.8.jar" />
+            <auxClasspath path="${libs.dir}/android-junit-report-1.5.8.jar" />
 
-            <auxClasspath path="libs/android-support-v4.jar" />
+            <auxClasspath path="${libs.dir}/android-support-v4.jar" />
         </findbugs>
     </target>
+
+    <!--
+    *
+    * Checkstyle
+    *
+    -->
 
     <target name="checkstyle" >
 
         <taskdef
-            classpath="/opt/checkstyle/checkstyle-5.6-all.jar"
+            classpath="${checkstyle.home}/checkstyle-5.6-all.jar"
             resource="checkstyletask.properties" />
 
         <checkstyle
-            config="conf/checkstyle-android.xml"
+            config="${config.dir}/checkstyle-android.xml"
             maxErrors="100" >
 
             <fileset
-                dir="src"
+                dir="${src.dir}"
                 includes="**/*.java" />
 
             <!-- Location of cache-file. Something that is project specific -->
@@ -157,11 +147,17 @@
         </checkstyle>
     </target>
 
-    <path id="pmd2.classpath" >
+    <!--
+    *
+    * PMD
+    *
+    -->
+
+    <path id="pmd.classpath" >
 
         <pathelement location="${build}" />
 
-        <fileset dir="/opt/pmd/lib/" >
+        <fileset dir="${pmd.home}/lib/" >
 
             <include name="*.jar" />
         </fileset>
@@ -170,17 +166,17 @@
     <taskdef
         name="pmd"
         classname="net.sourceforge.pmd.ant.PMDTask"
-        classpathref="pmd2.classpath" />
+        classpathref="pmd.classpath" />
 
     <target name="pmd" >
 
         <pmd rulesetfiles="java-imports,java-naming,java-android" >
 
             <formatter
-                toFile="code-analysis-reports/pmd-report.xml"
+                toFile="${reports.dir}/pmd-report.xml"
                 type="xml" />
 
-            <fileset dir="src" >
+            <fileset dir="${src.dir}" >
 
                 <include name="**/*.java" />
             </fileset>
