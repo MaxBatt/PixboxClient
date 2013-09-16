@@ -48,6 +48,67 @@
     <fail
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
+    
+    
+    
+    
+    
+    
+    
+      <target
+        name="test"
+        depends="-test-project-check"
+        description="Runs tests from the package defined in test.package property" >
+
+        <property
+            name="test.runner"
+            value="android.test.InstrumentationTestRunner" />
+
+        <!-- TODO: reports in other, indicated by user formats -->
+
+        <xml outfile="coverage/coverage.xml" />
+
+        <report>
+        </report>
+
+        <emma>
+        </emma>
+
+        <echo level="info" >
+Cleaning up temporary files...
+        </echo>
+
+        <delete file="${out.absolute.dir}/coverage.ec" />
+
+        <delete file="${out.absolute.dir}/coverage.em" />
+
+        <echo level="info" >
+Saving HTML report file in ${basedir}/coverage/coverage.html
+        </echo>
+
+        <echo level="info" >
+Saving XML report file in ${basedir}/coverage/coverage.xml
+        </echo>
+
+        <mkdir dir="${basedir}/junit-results" />
+
+        <exec
+            dir="junit-results"
+            executable="${adb}"
+            failonerror="true" >
+
+            <arg line="${adb.device.arg}" />
+
+            <arg value="pull" />
+
+            <arg value="/data/data/${tested.project.app.package}/files/" />
+        </exec>
+    </target>
+    
+    
+    
+    
+    
 
     <!--
         Import per project custom build rules if present at the root of the project.
@@ -91,54 +152,6 @@
 
     <!-- Overriding test target to configure emma and junit reports -->
 
-    <target
-        name="test"
-        depends="-test-project-check"
-        description="Runs tests from the package defined in test.package property" >
-
-        <property
-            name="test.runner"
-            value="com.zutubi.android.junitreport.JUnitReportTestRunner" />
-
-        <!-- TODO: reports in other, indicated by user formats -->
-
-        <xml outfile="coverage/coverage.xml" />
-
-        <report>
-        </report>
-
-        <emma>
-        </emma>
-
-        <echo level="info" >
-Cleaning up temporary files...
-        </echo>
-
-        <delete file="${out.absolute.dir}/coverage.ec" />
-
-        <delete file="${out.absolute.dir}/coverage.em" />
-
-        <echo level="info" >
-Saving HTML report file in ${basedir}/coverage/coverage.html
-        </echo>
-
-        <echo level="info" >
-Saving XML report file in ${basedir}/coverage/coverage.xml
-        </echo>
-
-        <mkdir dir="${basedir}/junit-results" />
-
-        <exec
-            dir="junit-results"
-            executable="${adb}"
-            failonerror="true" >
-
-            <arg line="${adb.device.arg}" />
-
-            <arg value="pull" />
-
-            <arg value="/data/data/${tested.project.app.package}/files/" />
-        </exec>
-    </target>
+  
 
 </project>
