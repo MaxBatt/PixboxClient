@@ -143,6 +143,5 @@ Saving XML report file in ${basedir}/coverage/coverage.xml
             <arg value="/data/data/${tested.project.app.package}/files/" />
         </exec>
     </target>
- - See more at: http://blog.cloudbees.com/2012/11/unit-test-results-code-coverage-and.html#sthash.zGDhz67a.dpuf
 
 </project>
