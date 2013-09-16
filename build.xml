@@ -26,9 +26,7 @@
 
     <!--
     *
-    *
     * Set Variables
-    *
     *
     -->
 
@@ -133,7 +131,7 @@
 
         <checkstyle
             config="${config.dir}/checkstyle-android.xml"
-            maxErrors="100" >
+            failOnViolation="false" >
 
             <fileset
                 dir="${src.dir}"
