@@ -70,6 +70,81 @@
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
 
+   
+    
+    
+    
+    
+     <property
+          name="src-dir"
+          value="src" /> <!-- change me -->
+
+      <property
+          name="bin-dir"
+          value="bin" /> <!-- change me -->
+		  
+
+      <property
+          name="findbugs.home"
+          value="/opt/findbugs" /> <!-- change me -->
+
+      <property
+          name="android-jar"
+          value="${sdk.dir}/platforms/android-16/android.jar" /> <!-- change me -->
+
+      <property
+          name="reports-folder"
+          value="code-analysis-reports" /> <!-- change me -->
+
+      <property
+          name="package-to-analyse"
+          value="de.pixbox.client.*" /> <!-- change me -->
+
+      <path id="findbugs.dir.jars" >
+
+          <fileset dir="${findbugs.home}/lib" >
+
+              <include name="*.jar" />
+          </fileset>
+      </path>
+
+      <taskdef
+          name="findbugs"
+          classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+          description="classes+findbugs=magic" />
+
+      <target name="findbugs" >
+		  
+		  <mkdir dir="${reports-folder}" />
+		  
+          <findbugs
+              home="${findbugs.home}"
+              onlyAnalyze="${package-to-analyse}"
+              output="xml"
+              outputFile="${reports-folder}/findbugs-report.xml" >
+
+              <sourcePath path="${src-dir}" />
+
+              <class location="${bin-dir}" />
+
+              <auxClasspath path="${android-jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
+			  <auxClasspath path="libs/android-async-http-1.4.3.jar" />
+			  <auxClasspath path="libs/android-smart-image-view-1.0.0.jar" />
+			  <auxClasspath path="libs/gson-2.2.2.jar" />
+			  <auxClasspath path="libs/android-junit-report-1.5.8.jar" />
+			  <auxClasspath path="libs/android-support-v4.jar" />
+
+          </findbugs>
+      </target>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <target name="pmd" >
 
         <taskdef
