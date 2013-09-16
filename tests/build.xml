@@ -84,7 +84,7 @@ Downloading XML test report…
                 description="Runs tests from the package defined in test.package property">
         <property name="test.runner" value="android.test.InstrumentationTestRunner" />
         
-        <echo level="info">Extracting coverage report...</echo>
+       
 
         <if condition="${project.is.test}">
         <then>
