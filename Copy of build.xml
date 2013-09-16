@@ -70,120 +70,112 @@
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
 
-    <property
-        name="src-dir"
-        value="src" /> <!-- change me -->
+   
+    
+    
+    
+    
+     <property
+          name="src-dir"
+          value="src" /> <!-- change me -->
 
-    <property
-        name="bin-dir"
-        value="bin" /> <!-- change me -->
+      <property
+          name="bin-dir"
+          value="bin" /> <!-- change me -->
+		  
 
-    <property
-        name="findbugs.home"
-        value="/opt/findbugs" /> <!-- change me -->
+      <property
+          name="findbugs.home"
+          value="/opt/findbugs" /> <!-- change me -->
 
-    <property
-        name="android-jar"
-        value="${sdk.dir}/platforms/android-16/android.jar" /> <!-- change me -->
+      <property
+          name="android-jar"
+          value="${sdk.dir}/platforms/android-16/android.jar" /> <!-- change me -->
 
-    <property
-        name="reports-folder"
-        value="code-analysis-reports" /> <!-- change me -->
+      <property
+          name="reports-folder"
+          value="code-analysis-reports" /> <!-- change me -->
 
-    <property
-        name="package-to-analyse"
-        value="de.pixbox.client.*" /> <!-- change me -->
+      <property
+          name="package-to-analyse"
+          value="de.pixbox.client.*" /> <!-- change me -->
 
-    <path id="findbugs.dir.jars" >
+      <path id="findbugs.dir.jars" >
 
-        <fileset dir="${findbugs.home}/lib" >
+          <fileset dir="${findbugs.home}/lib" >
 
-            <include name="*.jar" />
-        </fileset>
-    </path>
+              <include name="*.jar" />
+          </fileset>
+      </path>
 
-    <taskdef
-        name="findbugs"
-        classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
-        description="classes+findbugs=magic" />
+      <taskdef
+          name="findbugs"
+          classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+          description="classes+findbugs=magic" />
 
-    <target name="findbugs" >
+      <target name="findbugs" >
+		  
+		  <mkdir dir="${reports-folder}" />
+		  
+          <findbugs
+              home="${findbugs.home}"
+              onlyAnalyze="${package-to-analyse}"
+              output="xml"
+              outputFile="${reports-folder}/findbugs-report.xml" >
 
-        <mkdir dir="${reports-folder}" />
+              <sourcePath path="${src-dir}" />
 
-        <findbugs
-            home="${findbugs.home}"
-            onlyAnalyze="${package-to-analyse}"
-            output="xml"
-            outputFile="${reports-folder}/findbugs-report.xml" >
+              <class location="${bin-dir}" />
 
-            <sourcePath path="${src-dir}" />
+              <auxClasspath path="${android-jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
+			  <auxClasspath path="libs/android-async-http-1.4.3.jar" />
+			  <auxClasspath path="libs/android-smart-image-view-1.0.0.jar" />
+			  <auxClasspath path="libs/gson-2.2.2.jar" />
+			  <auxClasspath path="libs/android-junit-report-1.5.8.jar" />
+			  <auxClasspath path="libs/android-support-v4.jar" />
 
-            <class location="${bin-dir}" />
+          </findbugs>
+      </target>
+    
+    
+    
+    
+    <target name="checkstyle">
+		  
+		  <taskdef resource="checkstyletask.properties"
+		           classpath="/opt/checkstyle/checkstyle-5.6-all.jar"/>
+		  
+		  <checkstyle config="conf/checkstyle-android.xml" maxErrors="100">
+		    <fileset dir="src" includes="**/*.java"/>
 
-            <auxClasspath path="${android-jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
-
-            <auxClasspath path="libs/android-async-http-1.4.3.jar" />
-
-            <auxClasspath path="libs/android-smart-image-view-1.0.0.jar" />
-
-            <auxClasspath path="libs/gson-2.2.2.jar" />
-
-            <auxClasspath path="libs/android-junit-report-1.5.8.jar" />
-
-            <auxClasspath path="libs/android-support-v4.jar" />
-        </findbugs>
-    </target>
-
-    <target name="checkstyle" >
-
-        <taskdef
-            classpath="/opt/checkstyle/checkstyle-5.6-all.jar"
-            resource="checkstyletask.properties" />
-
-        <checkstyle
-            config="conf/checkstyle-android.xml"
-            maxErrors="100" >
-
-            <fileset
-                dir="src"
-                includes="**/*.java" />
-
-            <!-- Location of cache-file. Something that is project specific -->
-
-            <property
-                file="target/cachefile"
-                key="checkstyle.cache.file" />
-        </checkstyle>
-    </target>
-
-    <path id="pmd2.classpath" >
-
-        <pathelement location="${build}" />
-
-        <fileset dir="/opt/pmd/lib/" >
-
-            <include name="*.jar" />
-        </fileset>
-    </path>
-
-    <taskdef
-        name="pmd"
-        classname="net.sourceforge.pmd.ant.PMDTask"
-        classpathref="pmd2.classpath" />
-
+		    <!-- Location of cache-file. Something that is project specific -->
+		    <property key="checkstyle.cache.file" file="target/cachefile"/>
+		  </checkstyle>
+	  </target>
+    
+    
+    
+    
     <target name="pmd" >
 
-        <pmd rulesetfiles="conf/rulesets/java/android.xml" >
+        <taskdef
+            name="pmd"
+            classname="net.sourceforge.pmd.ant.PMDTask" />
+
+        <pmd shortFilenames="true" >
+
+            <sourceLanguage
+                name="java"
+                version="1.6" />
+
+            <ruleset>
+pmd/android_rules.xml
+            </ruleset>
 
             <formatter
-                toFile="code-analysis-reports/pmd-report.xml"
+                toFile="pmd/pmd.xml"
                 type="xml" />
 
-            <fileset dir="src" >
-
-                <include name="**/*.java" />
-            </fileset>
         </pmd>
     </target>
 
