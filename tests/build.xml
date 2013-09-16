@@ -87,6 +87,7 @@ Downloading XML test report…
        
 
         <if condition="${project.is.test}">
+             <echo level="info">Extracting coverage report...</echo>
         <then>
             <property name="tested.project.absolute.dir" location="${tested.project.dir}" />
 
