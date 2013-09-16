@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="libs/gson-2.2.2.jar"/>
 	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="libs/android-smart-image-view-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/android-junit-report-1.5.8.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
