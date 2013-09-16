@@ -87,8 +87,8 @@ Downloading XML test report…
        
 
         <if condition="${project.is.test}">
-             <echo level="info">Extracting coverage report...</echo>
         <then>
+            <echo level="info">Extracting coverage report...</echo>
             <property name="tested.project.absolute.dir" location="${tested.project.dir}" />
 
             <!-- Application package of the tested project extracted from its manifest file -->
