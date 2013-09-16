@@ -174,7 +174,7 @@
 
     <target name="pmd" >
 
-        <pmd rulesetfiles="conf/rulesets/java/android.xml" >
+        <pmd rulesetfiles="rulesets/java/android.xml" >
 
             <formatter
                 toFile="code-analysis-reports/pmd-report.xml"
