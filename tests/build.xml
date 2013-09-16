@@ -89,9 +89,8 @@
 
     <import file="${sdk.dir}/tools/ant/build.xml" />
 
-    
-    
     <!-- Overriding test target to configure emma and junit reports -->
+
     <target
         name="test"
         depends="-test-project-check"
@@ -102,8 +101,6 @@
             value="com.zutubi.android.junitreport.JUnitReportTestRunner" />
 
         <!-- TODO: reports in other, indicated by user formats -->
-
-        <html outfile="coverage/coverage.html" />
 
         <xml outfile="coverage/coverage.xml" />
 
