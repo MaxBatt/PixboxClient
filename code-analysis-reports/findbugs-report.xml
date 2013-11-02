@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.2" sequence="0" timestamp="1383408423652" analysisTimestamp="1383408423670" release="">
+  <Project projectName="">
+    <Jar>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin</Jar>
+    <AuxClasspathEntry>/Applications/android-sdk-macosx/platforms/android-16/android.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/libs/android-async-http-1.4.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/libs/android-smart-image-view-1.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/libs/gson-2.2.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/libs/android-junit-report-1.5.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/libs/android-support-v4.jar</AuxClasspathEntry>
+    <SrcDir>/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src</SrcDir>
+  </Project>
+  <BugInstance type="NP_ALWAYS_NULL_EXCEPTION" priority="2" abbrev="NP" category="CORRECTNESS">
+    <Class classname="de.pixbox.client.MainActivity">
+      <SourceLine classname="de.pixbox.client.MainActivity" start="45" end="480" sourcefile="MainActivity.java" sourcepath="de/pixbox/client/MainActivity.java"/>
+    </Class>
+    <Method classname="de.pixbox.client.MainActivity" name="createBitmap" signature="(Landroid/net/Uri;)Landroid/graphics/Bitmap;" isStatic="false">
+      <SourceLine classname="de.pixbox.client.MainActivity" start="350" end="368" startBytecode="0" endBytecode="493" sourcefile="MainActivity.java" sourcepath="de/pixbox/client/MainActivity.java"/>
+    </Method>
+    <LocalVariable name="fileDescriptor" register="4" pc="72" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="de.pixbox.client.MainActivity" start="362" end="362" startBytecode="74" endBytecode="74" sourcefile="MainActivity.java" sourcepath="de/pixbox/client/MainActivity.java" role="SOURCE_LINE_DEREF"/>
+    <Property name="edu.umd.cs.findbugs.detect.NullDerefProperty.DEREFS_ARE_CLONED" value="true"/>
+    <Property name="edu.umd.cs.findbugs.props.GeneralWarningProperty.ON_EXCEPTION_PATH" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DoomedCodeWarningProperty.DOOMED_CODE" value="true"/>
+  </BugInstance>
+  <BugInstance type="ES_COMPARING_STRINGS_WITH_EQ" priority="2" abbrev="ES" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.PixBoxActivity">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity" start="1" end="492" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Class>
+    <Method classname="de.pixbox.client.PixBoxActivity" name="onContextItemSelected" signature="(Landroid/view/MenuItem;)Z" isStatic="false">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity" start="213" end="276" startBytecode="0" endBytecode="152" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String" start="2" end="89" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Type>
+    <Method classname="android.content.res.Resources" name="getString" signature="(I)Ljava/lang/String;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="android.content.res.Resources" start="26" end="26" startBytecode="0" endBytecode="61" sourcefile="Resources.java" sourcepath="android/content/res/Resources.java"/>
+    </Method>
+    <Method classname="android.view.MenuItem" name="getTitle" signature="()Ljava/lang/CharSequence;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="android.view.MenuItem" sourcefile="MenuItem.java" sourcepath="android/view/MenuItem.java"/>
+    </Method>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity" start="220" end="220" startBytecode="40" endBytecode="40" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity" start="241" end="241" startBytecode="164" endBytecode="164" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_ANOTHER_INSTANCE"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity" start="259" end="259" startBytecode="251" endBytecode="251" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_ANOTHER_INSTANCE"/>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.PixBoxActivity">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity" start="1" end="492" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Class>
+    <Method classname="de.pixbox.client.PixBoxActivity" name="createImageFolder" signature="(Ljava/lang/String;)V" isStatic="false">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity" start="488" end="492" startBytecode="0" endBytecode="109" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Method>
+    <Method classname="java.io.File" name="mkdirs" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="47" end="47" startBytecode="0" endBytecode="51" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity" start="490" end="490" startBytecode="17" endBytecode="17" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery" start="1" end="434" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Class>
+    <Method classname="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery" name="doInBackground" signature="([Lde/pixbox/client/helpers/Image;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery" start="389" end="422" startBytecode="0" endBytecode="201" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Method>
+    <Method classname="java.io.File" name="delete" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="14" end="14" startBytecode="0" endBytecode="51" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery" start="419" end="419" startBytecode="79" endBytecode="79" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+  </BugInstance>
+  <BugInstance type="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE" priority="2" abbrev="OBL" category="EXPERIMENTAL">
+    <Class classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="1" end="359" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Class>
+    <Method classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" name="doInBackground" signature="([Ljava/lang/String;)Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="307" end="340" startBytecode="0" endBytecode="481" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java"/>
+    </Method>
+    <Class classname="java.io.OutputStream" role="CLASS_REFTYPE">
+      <SourceLine classname="java.io.OutputStream" start="5" end="9" sourcefile="OutputStream.java" sourcepath="java/io/OutputStream.java"/>
+    </Class>
+    <Int value="1" role="INT_OBLIGATIONS_REMAINING"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="316" end="316" startBytecode="89" endBytecode="89" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_OBLIGATION_CREATED"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="319" end="319" startBytecode="94" endBytecode="94" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="321" end="321" startBytecode="101" endBytecode="101" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="323" end="323" startBytecode="104" endBytecode="104" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="336" end="336" startBytecode="154" endBytecode="154" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="337" end="337" startBytecode="155" endBytecode="155" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <SourceLine classname="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" start="340" end="340" startBytecode="165" endBytecode="165" sourcefile="PixBoxActivity.java" sourcepath="de/pixbox/client/PixBoxActivity.java" role="SOURCE_LINE_PATH_CONTINUES"/>
+    <String value="{OutputStream x 1}" role="STRING_REMAINING_OBLIGATIONS"/>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$attr">
+      <SourceLine classname="de.pixbox.client.R$attr" start="11" end="11" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$dimen">
+      <SourceLine classname="de.pixbox.client.R$dimen" start="13" end="13" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$drawable">
+      <SourceLine classname="de.pixbox.client.R$drawable" start="21" end="21" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$id">
+      <SourceLine classname="de.pixbox.client.R$id" start="33" end="33" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$layout">
+      <SourceLine classname="de.pixbox.client.R$layout" start="52" end="52" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$menu">
+      <SourceLine classname="de.pixbox.client.R$menu" start="58" end="58" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$string">
+      <SourceLine classname="de.pixbox.client.R$string" start="61" end="61" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="de.pixbox.client.R$style">
+      <SourceLine classname="de.pixbox.client.R$style" start="95" end="95" sourcefile="R.java" sourcepath="de/pixbox/client/R.java"/>
+    </Class>
+  </BugInstance>
+  <Errors errors="0" missingClasses="1">
+    <MissingClass>java.rmi.Remote</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Sat, 2 Nov 2013 17:07:03 +0100" total_classes="28" referenced_classes="225" total_bugs="14" total_size="756" num_packages="2" vm_version="23.21-b01" cpu_seconds="15.95" clock_seconds="5.81" peak_mbytes="55.60" alloc_mbytes="98.62" gc_seconds="0.52" priority_2="14">
+    <PackageStats package="de.pixbox.client" total_bugs="14" total_types="23" total_size="658" priority_2="14">
+      <ClassStats class="de.pixbox.client.BuildConfig" sourceFile="BuildConfig.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="de.pixbox.client.MainActivity" sourceFile="MainActivity.java" interface="false" size="158" bugs="2" priority_2="2"/>
+      <ClassStats class="de.pixbox.client.MainActivity$1" sourceFile="MainActivity.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="de.pixbox.client.MainActivity$2" sourceFile="MainActivity.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity" sourceFile="PixBoxActivity.java" interface="false" size="120" bugs="2" priority_2="2"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity$1" sourceFile="PixBoxActivity.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity$2" sourceFile="PixBoxActivity.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery" sourceFile="PixBoxActivity.java" interface="false" size="26" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity$DeleteImageFromGallery$1" sourceFile="PixBoxActivity.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="de.pixbox.client.PixBoxActivity$DownloadFileFromURL" sourceFile="PixBoxActivity.java" interface="false" size="41" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R" sourceFile="R.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="de.pixbox.client.R$attr" sourceFile="R.java" interface="false" size="3" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$dimen" sourceFile="R.java" interface="false" size="4" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$drawable" sourceFile="R.java" interface="false" size="13" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$id" sourceFile="R.java" interface="false" size="20" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$layout" sourceFile="R.java" interface="false" size="7" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$menu" sourceFile="R.java" interface="false" size="4" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$string" sourceFile="R.java" interface="false" size="35" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.R$style" sourceFile="R.java" interface="false" size="5" bugs="1" priority_2="1"/>
+      <ClassStats class="de.pixbox.client.RegisterActivity" sourceFile="RegisterActivity.java" interface="false" size="45" bugs="0"/>
+      <ClassStats class="de.pixbox.client.RegisterActivity$1" sourceFile="RegisterActivity.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="de.pixbox.client.RegisterActivity$2" sourceFile="RegisterActivity.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="de.pixbox.client.RestClient" sourceFile="RestClient.java" interface="false" size="15" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="de.pixbox.client.helpers" total_bugs="0" total_types="5" total_size="98">
+      <ClassStats class="de.pixbox.client.helpers.ConnectionCheck" sourceFile="ConnectionCheck.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="de.pixbox.client.helpers.GalleryListAdapter" sourceFile="GalleryListAdapter.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="de.pixbox.client.helpers.Image" sourceFile="Image.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="de.pixbox.client.helpers.RestClient" sourceFile="RestClient.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="de.pixbox.client.helpers.User" sourceFile="User.java" interface="false" size="13" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="509" invocations="678" avgMicrosecondsPerInvocation="751" maxMicrosecondsPerInvocation="42540" standardDeviationMircosecondsPerInvocation="2431"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="335" invocations="100" avgMicrosecondsPerInvocation="3359" maxMicrosecondsPerInvocation="135322" standardDeviationMircosecondsPerInvocation="13690"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="306" invocations="93" avgMicrosecondsPerInvocation="3294" maxMicrosecondsPerInvocation="37726" standardDeviationMircosecondsPerInvocation="5543"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="264" invocations="98" avgMicrosecondsPerInvocation="2701" maxMicrosecondsPerInvocation="18477" standardDeviationMircosecondsPerInvocation="4317"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="236" invocations="98" avgMicrosecondsPerInvocation="2414" maxMicrosecondsPerInvocation="20460" standardDeviationMircosecondsPerInvocation="3931"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="209" invocations="100" avgMicrosecondsPerInvocation="2091" maxMicrosecondsPerInvocation="20224" standardDeviationMircosecondsPerInvocation="3568"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="192" invocations="263" avgMicrosecondsPerInvocation="732" maxMicrosecondsPerInvocation="67476" standardDeviationMircosecondsPerInvocation="4332"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="166" invocations="225" avgMicrosecondsPerInvocation="739" maxMicrosecondsPerInvocation="10973" standardDeviationMircosecondsPerInvocation="1692"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="161" invocations="98" avgMicrosecondsPerInvocation="1646" maxMicrosecondsPerInvocation="17632" standardDeviationMircosecondsPerInvocation="2625"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="151" invocations="225" avgMicrosecondsPerInvocation="674" maxMicrosecondsPerInvocation="10906" standardDeviationMircosecondsPerInvocation="1534"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="133" invocations="693" avgMicrosecondsPerInvocation="193" maxMicrosecondsPerInvocation="7514" standardDeviationMircosecondsPerInvocation="310"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="133" invocations="77" avgMicrosecondsPerInvocation="1735" maxMicrosecondsPerInvocation="13123" standardDeviationMircosecondsPerInvocation="2721"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="118" invocations="225" avgMicrosecondsPerInvocation="525" maxMicrosecondsPerInvocation="13964" standardDeviationMircosecondsPerInvocation="1504"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="116" invocations="98" avgMicrosecondsPerInvocation="1188" maxMicrosecondsPerInvocation="75827" standardDeviationMircosecondsPerInvocation="7696"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="113" invocations="225" avgMicrosecondsPerInvocation="503" maxMicrosecondsPerInvocation="13891" standardDeviationMircosecondsPerInvocation="1296"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="94" invocations="225" avgMicrosecondsPerInvocation="420" maxMicrosecondsPerInvocation="12368" standardDeviationMircosecondsPerInvocation="1226"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="83" invocations="225" avgMicrosecondsPerInvocation="371" maxMicrosecondsPerInvocation="12599" standardDeviationMircosecondsPerInvocation="1503"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="70" invocations="98" avgMicrosecondsPerInvocation="724" maxMicrosecondsPerInvocation="6765" standardDeviationMircosecondsPerInvocation="1179"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="63" invocations="616" avgMicrosecondsPerInvocation="102" maxMicrosecondsPerInvocation="5097" standardDeviationMircosecondsPerInvocation="285"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="60" invocations="23" avgMicrosecondsPerInvocation="2637" maxMicrosecondsPerInvocation="27162" standardDeviationMircosecondsPerInvocation="7045"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="58" invocations="23" avgMicrosecondsPerInvocation="2550" maxMicrosecondsPerInvocation="15328" standardDeviationMircosecondsPerInvocation="3930"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="42" invocations="74" avgMicrosecondsPerInvocation="576" maxMicrosecondsPerInvocation="4113" standardDeviationMircosecondsPerInvocation="785"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="40" invocations="23" avgMicrosecondsPerInvocation="1758" maxMicrosecondsPerInvocation="15443" standardDeviationMircosecondsPerInvocation="3369"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="39" invocations="225" avgMicrosecondsPerInvocation="173" maxMicrosecondsPerInvocation="3429" standardDeviationMircosecondsPerInvocation="419"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="37" invocations="23" avgMicrosecondsPerInvocation="1610" maxMicrosecondsPerInvocation="9154" standardDeviationMircosecondsPerInvocation="2152"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.0.5" timestamp="2013-11-02T17:07:11.333">
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/MainActivity.java">
+<violation beginline="59" endline="59" begincolumn="32" endcolumn="33" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" variable="pd" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like pd
+</violation>
+<violation beginline="63" endline="63" begincolumn="40" endcolumn="57" rule="LongVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onCreate" variable="savedInstanceState" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like savedInstanceState
+</violation>
+<violation beginline="106" endline="106" begincolumn="32" endcolumn="32" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onCreate" variable="i" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like i
+</violation>
+<violation beginline="118" endline="118" begincolumn="33" endcolumn="34" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onCreate" variable="cc" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like cc
+</violation>
+<violation beginline="174" endline="174" begincolumn="9" endcolumn="28" rule="CallSuperLast" ruleset="Android" package="de.pixbox.client" class="MainActivity" method="onPause" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/android.html#CallSuperLast" priority="3">
+super should be called at the end of the method
+</violation>
+<violation beginline="186" endline="186" begincolumn="46" endcolumn="46" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onPictureBtnClicked" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="209" endline="209" begincolumn="46" endcolumn="46" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onClick" variable="f" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like f
+</violation>
+<violation beginline="209" endline="210" begincolumn="59" endcolumn="84" rule="UnnecessaryFullyQualifiedName" ruleset="Import Statements" package="de.pixbox.client" class="MainActivity" method="onClick" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/imports.html#UnnecessaryFullyQualifiedName" priority="4">
+Unnecessary use of fully qualified name 'android.os.Environment.getExternalStorageDirectory' due to existing import 'android.os.Environment'
+</violation>
+<violation beginline="263" endline="263" begincolumn="38" endcolumn="38" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onActivityResult" variable="f" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like f
+</violation>
+<violation beginline="312" endline="312" begincolumn="48" endcolumn="48" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onUploadImgBtnClicked" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="330" endline="330" begincolumn="46" endcolumn="46" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onGalleryBtnClicked" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="332" endline="332" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="onGalleryBtnClicked" variable="i" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like i
+</violation>
+<violation beginline="350" endline="350" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="createBitmap" variable="bm" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like bm
+</violation>
+<violation beginline="442" endline="442" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="encodeTobase64" variable="b" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like b
+</violation>
+<violation beginline="468" endline="468" begincolumn="35" endcolumn="35" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="showView" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="478" endline="478" begincolumn="35" endcolumn="35" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" method="hideView" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+</file>
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/PixBoxActivity.java">
+<violation beginline="66" endline="66" begincolumn="32" endcolumn="33" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" variable="pd" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like pd
+</violation>
+<violation beginline="108" endline="108" begincolumn="59" endcolumn="64" rule="VariableNamingConventions" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="onSuccess" variable="Jarray" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#VariableNamingConventions" priority="1">
+Variables should start with a lowercase character, 'Jarray' starts with uppercase character.
+</violation>
+<violation beginline="163" endline="163" begincolumn="30" endcolumn="31" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="onItemClick" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="191" endline="191" begincolumn="64" endcolumn="64" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="onCreateContextMenu" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="230" endline="230" begincolumn="32" endcolumn="32" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="onContextItemSelected" variable="i" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like i
+</violation>
+<violation beginline="304" endline="304" begincolumn="59" endcolumn="63" rule="VariableNamingConventions" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity$DownloadFileFromURL" method="doInBackground" variable="f_url" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'f_url' is not final.
+</violation>
+<violation beginline="349" endline="349" begincolumn="53" endcolumn="60" rule="VariableNamingConventions" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity$DownloadFileFromURL" method="onPostExecute" variable="file_url" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'file_url' is not final.
+</violation>
+<violation beginline="431" endline="431" begincolumn="53" endcolumn="60" rule="VariableNamingConventions" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity$DeleteImageFromGallery" method="onPostExecute" variable="file_url" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), 'file_url' is not final.
+</violation>
+<violation beginline="474" endline="474" begincolumn="89" endcolumn="90" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="onClick" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="488" endline="488" begincolumn="22" endcolumn="22" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="PixBoxActivity" method="createImageFolder" variable="f" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like f
+</violation>
+</file>
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/RegisterActivity.java">
+<violation beginline="38" endline="38" begincolumn="29" endcolumn="30" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" variable="pb" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like pb
+</violation>
+<violation beginline="43" endline="43" begincolumn="40" endcolumn="57" rule="LongVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="onCreate" variable="savedInstanceState" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like savedInstanceState
+</violation>
+<violation beginline="65" endline="65" begincolumn="64" endcolumn="64" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="onTextChanged" variable="s" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like s
+</violation>
+<violation beginline="70" endline="70" begincolumn="68" endcolumn="68" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="beforeTextChanged" variable="s" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like s
+</violation>
+<violation beginline="80" endline="80" begincolumn="63" endcolumn="63" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="afterTextChanged" variable="s" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like s
+</violation>
+<violation beginline="126" endline="126" begincolumn="39" endcolumn="39" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="onBtnClicked" variable="v" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like v
+</violation>
+<violation beginline="163" endline="163" begincolumn="72" endcolumn="72" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="RegisterActivity" method="onSuccess" variable="i" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like i
+</violation>
+</file>
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/helpers/ConnectionCheck.java">
+<violation beginline="14" endline="14" begincolumn="21" endcolumn="28" rule="VariableNamingConventions" ruleset="Naming" package="de.pixbox.client.helpers" class="ConnectionCheck" variable="_context" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#VariableNamingConventions" priority="1">
+Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), '_context' is not final.
+</violation>
+</file>
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/helpers/Image.java">
+<violation beginline="13" endline="13" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client.helpers" class="Image" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="32" endline="32" begincolumn="34" endcolumn="35" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client.helpers" class="Image" method="setId" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+</file>
+<file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/helpers/User.java">
+<violation beginline="11" endline="30" begincolumn="8" endcolumn="1" rule="ShortClassName" ruleset="Naming" package="de.pixbox.client.helpers" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortClassName" priority="4">
+A Classname should have a minimum of five characters
+</violation>
+<violation beginline="12" endline="12" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client.helpers" class="User" variable="id" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+</file>
+</pmd>

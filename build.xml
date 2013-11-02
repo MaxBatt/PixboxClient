@@ -70,27 +70,21 @@
         name="android.jar"
         value="${sdk.dir}/platforms/android-16/android.jar" />
 
+    
+    
     <!--
     *
     * Findbugs
     *
     -->
-
-    <path id="findbugs.dir.jars" >
-
-        <fileset dir="${findbugs.home}/lib" >
-
-            <include name="*.jar" />
-        </fileset>
-    </path>
-
+    
     <taskdef
         name="findbugs"
+        classpath="${findbugs.home}/lib/findbugs-ant.jar"
         classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
         description="classes+findbugs=magic" />
 
     <target name="findbugs" >
-
         <mkdir dir="${reports.dir}" />
 
         <findbugs
@@ -103,7 +97,7 @@
 
             <class location="${bin.dir}" />
 
-            <auxClasspath path="${android.jar}" /> <!-- so we dont get hundrets of "The following classes needed for analysis were missing" warnings. -->
+            <auxClasspath path="${android.jar}" /> 
 
             <auxClasspath path="${libs.dir}/android-async-http-1.4.3.jar" />
 
@@ -116,6 +110,8 @@
             <auxClasspath path="${libs.dir}/android-support-v4.jar" />
         </findbugs>
     </target>
+    
+
 
     <!--
     *
