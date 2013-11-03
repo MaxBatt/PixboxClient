@@ -132,6 +132,10 @@
             <fileset
                 dir="${src.dir}"
                 includes="**/*.java" />
+            
+            <formatter
+                toFile="${reports.dir}/checkstyle-report.xml"
+                type="xml" />
 
             <!-- Location of cache-file. Something that is project specific -->
 
