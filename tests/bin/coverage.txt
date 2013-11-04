@@ -1,0 +1,21 @@
+[EMMA v2.0.5312 report, generated Sun Nov 03 19:53:25 CET 2013]
+-------------------------------------------------------------------------------
+OVERALL COVERAGE SUMMARY:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+11%  (2/18)!	10%  (11/107)!	6%   (115/2042)!	6%   (21,8/397)!	all classes
+
+OVERALL STATS SUMMARY:
+
+total packages:	2
+total classes:	18
+total methods:	107
+total executable files:	9
+total executable lines:	397
+
+COVERAGE BREAKDOWN BY PACKAGE:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+0%   (0/5)!	0%   (0/24)!	0%   (0/212)!	0%   (0/54)!	de.pixbox.client.helpers
+15%  (2/13)!	13%  (11/83)!	6%   (115/1830)!	6%   (21,8/343)!	de.pixbox.client
+-------------------------------------------------------------------------------

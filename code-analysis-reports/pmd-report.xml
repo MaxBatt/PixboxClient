@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.0.5" timestamp="2013-11-02T17:07:11.333">
+<pmd version="5.0.5" timestamp="2013-11-04T13:15:17.135">
 <file name="/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/src/de/pixbox/client/MainActivity.java">
 <violation beginline="59" endline="59" begincolumn="32" endcolumn="33" rule="ShortVariable" ruleset="Naming" package="de.pixbox.client" class="MainActivity" variable="pd" externalInfoUrl="http://pmd.sourceforge.net/pmd-5.0.5/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like pd

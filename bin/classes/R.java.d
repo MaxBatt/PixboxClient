@@ -24,14 +24,4 @@
 /Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/res/values-sw720dp-land/dimens.xml \
 /Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/res/values-v11/styles.xml \
 /Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/res/values-v14/styles.xml \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-hdpi/ic_launcher.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/ic_launcher.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/my_pixbox.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/my_pixbox_pressed.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/take_picture.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/take_picture_pressed.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/upload.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-mdpi/upload_pressed.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-xhdpi/ic_launcher.png \
-/Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/res/drawable-xxhdpi/ic_launcher.png \
 /Users/beatmax/Documents/Eclipse Workspaces/PixboxClient/bin/AndroidManifest.xml \

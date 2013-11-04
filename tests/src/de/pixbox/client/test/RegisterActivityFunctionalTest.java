@@ -45,6 +45,8 @@ public class RegisterActivityFunctionalTest extends
 
 	}
 
+	
+	/*
 	@SmallTest
 	public void testStartMainActivity() throws Exception {
 
@@ -70,6 +72,8 @@ public class RegisterActivityFunctionalTest extends
 		// Click registerButton
 		TouchUtils.clickView(this, registerButton);
 
+		
+		
 		// Wait 2 seconds for the start of the activity
 		MainActivity mainActivity = (MainActivity) activityMonitor
 				.waitForActivityWithTimeout(2000);
@@ -90,6 +94,8 @@ public class RegisterActivityFunctionalTest extends
 				tvUserWelcome.getText().toString());
 
 	}
+	
+	*/
 
 	private String createRandomString() {
 		char[] chars = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();

@@ -23,12 +23,11 @@
     <fail
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
+    
 
-    <!--
-    *
-    * Set Variables
-    *
-    -->
+    <!-- ******************************************************* -->
+    <!-- **********        Set path variables	       ********* -->
+    <!-- ******************************************************* -->
 
     <property
         name="src.dir"
@@ -41,7 +40,12 @@
     <property
         name="libs.dir"
         value="libs" />
-
+    
+    <property
+        name="lint.home"
+        value="/Applications/android-sdk-macosx/tools/lint" />
+    
+    
     <property
         name="findbugs.home"
         value="/opt/findbugs" />
@@ -69,22 +73,32 @@
     <property
         name="android.jar"
         value="${sdk.dir}/platforms/android-16/android.jar" />
+    
+    
+   <!-- ******************************************************* -->
+   <!-- **********        Run Lint on the project     ********* -->
+   <!-- ******************************************************* --> 
+    
+    <target name="lint"
+            description="Runs lint on the project to look for potential bugs" >
+        <lint executable="${lint.home}"
+              xml="${reports.dir}/lint-report.xml"
+              src="${src.dir}" />
+    </target>
 
-    
-    
-    <!--
-    *
-    * Findbugs
-    *
-    -->
-    
+   
+    <!-- ******************************************************* -->
+    <!-- **********    Run Findbugs on the project     ********* -->
+    <!-- ******************************************************* -->
+
     <taskdef
         name="findbugs"
-        classpath="${findbugs.home}/lib/findbugs-ant.jar"
         classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+        classpath="${findbugs.home}/lib/findbugs-ant.jar"
         description="classes+findbugs=magic" />
 
     <target name="findbugs" >
+
         <mkdir dir="${reports.dir}" />
 
         <findbugs
@@ -97,7 +111,7 @@
 
             <class location="${bin.dir}" />
 
-            <auxClasspath path="${android.jar}" /> 
+            <auxClasspath path="${android.jar}" />
 
             <auxClasspath path="${libs.dir}/android-async-http-1.4.3.jar" />
 
@@ -110,14 +124,11 @@
             <auxClasspath path="${libs.dir}/android-support-v4.jar" />
         </findbugs>
     </target>
+
     
-
-
-    <!--
-    *
-    * Checkstyle
-    *
-    -->
+    <!-- ******************************************************* -->
+    <!-- **********    Run Checkstyle on the project   ********* -->
+    <!-- ******************************************************* -->
 
     <target name="checkstyle" >
 
@@ -132,7 +143,7 @@
             <fileset
                 dir="${src.dir}"
                 includes="**/*.java" />
-            
+
             <formatter
                 toFile="${reports.dir}/checkstyle-report.xml"
                 type="xml" />
@@ -144,12 +155,11 @@
                 key="checkstyle.cache.file" />
         </checkstyle>
     </target>
+    
 
-    <!--
-    *
-    * PMD
-    *
-    -->
+    <!-- ******************************************************* -->
+    <!-- **********        Run PMD on the project      ********* -->
+    <!-- ******************************************************* -->
 
     <path id="pmd.classpath" >
 
@@ -181,42 +191,13 @@
         </pmd>
     </target>
 
-    <!--
-        Import per project custom build rules if present at the root of the project.
-        This is the place to put custom intermediary targets such as:
-            -pre-build
-            -pre-compile
-            -post-compile (This is typically used for code obfuscation.
-                           Compiled code location: ${out.classes.absolute.dir}
-                           If this is not done in place, override ${out.dex.input.absolute.dir})
-            -post-package
-            -post-build
-            -pre-clean
-    -->
+    
 
     <import
         file="custom_rules.xml"
         optional="true" />
 
-    <!--
-         Import the actual build file.
-
-         To customize existing targets, there are two options:
-         - Customize only one target:
-             - copy/paste the target into this file, *before* the
-               <import> task.
-             - customize it to your needs.
-         - Customize the whole content of build.xml
-             - copy/paste the content of the rules files (minus the top node)
-               into this file, replacing the <import> task.
-             - customize to your needs.
-
-         ***********************
-         ****** IMPORTANT ******
-         ***********************
-         In all cases you must update the value of version-tag below to read 'custom' instead of an integer,
-         in order to avoid having your file be overridden by tools such as "android update project"
-    -->
+    
     <!-- version-tag: custom -->
 
     <import file="${sdk.dir}/tools/ant/build.xml" />

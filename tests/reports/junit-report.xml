@@ -1,0 +1,1 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?><testsuites><testsuite name="de.pixbox.client.test.RegisterActivityUnitTest"><testcase classname="de.pixbox.client.test.RegisterActivityUnitTest" name="testLayout" time="0.205" /><testcase classname="de.pixbox.client.test.RegisterActivityUnitTest" name="testValidation" time="0.037" /></testsuite></testsuites>
