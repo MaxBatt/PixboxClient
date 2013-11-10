@@ -23,7 +23,6 @@
     <fail
         message="sdk.dir is missing. Make sure to generate local.properties using &apos;android update project&apos; or to inject it through the ANDROID_HOME environment variable."
         unless="sdk.dir" />
-    
 
     <!-- ******************************************************* -->
     <!-- **********        Set path variables	       ********* -->
@@ -40,12 +39,11 @@
     <property
         name="libs.dir"
         value="libs" />
-    
+
     <property
         name="lint.home"
         value="/Applications/android-sdk-macosx/tools/lint" />
-    
-    
+
     <property
         name="findbugs.home"
         value="/opt/findbugs" />
@@ -73,20 +71,21 @@
     <property
         name="android.jar"
         value="${sdk.dir}/platforms/android-16/android.jar" />
-    
-    
-   <!-- ******************************************************* -->
-   <!-- **********        Run Lint on the project     ********* -->
-   <!-- ******************************************************* --> 
-    
-    <target name="lint"
-            description="Runs lint on the project to look for potential bugs" >
-        <lint executable="${lint.home}"
-              xml="${reports.dir}/lint-report.xml"
-              src="${src.dir}" />
+
+    <!-- ******************************************************* -->
+    <!-- **********        Run Lint on the project     ********* -->
+    <!-- ******************************************************* -->
+
+    <target
+        name="lint"
+        description="Runs lint on the project to look for potential bugs" >
+
+        <lint
+            executable="${lint.home}"
+            src="${src.dir}"
+            xml="${reports.dir}/lint-report.xml" />
     </target>
 
-   
     <!-- ******************************************************* -->
     <!-- **********    Run Findbugs on the project     ********* -->
     <!-- ******************************************************* -->
@@ -125,7 +124,6 @@
         </findbugs>
     </target>
 
-    
     <!-- ******************************************************* -->
     <!-- **********    Run Checkstyle on the project   ********* -->
     <!-- ******************************************************* -->
@@ -155,7 +153,6 @@
                 key="checkstyle.cache.file" />
         </checkstyle>
     </target>
-    
 
     <!-- ******************************************************* -->
     <!-- **********        Run PMD on the project      ********* -->
@@ -191,13 +188,10 @@
         </pmd>
     </target>
 
-    
-
     <import
         file="custom_rules.xml"
         optional="true" />
 
-    
     <!-- version-tag: custom -->
 
     <import file="${sdk.dir}/tools/ant/build.xml" />
