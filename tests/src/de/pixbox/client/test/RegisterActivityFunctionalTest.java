@@ -3,7 +3,6 @@ package de.pixbox.client.test;
 import java.util.Random;
 
 import de.pixbox.client.MainActivity;
-import de.pixbox.client.R;
 import de.pixbox.client.RegisterActivity;
 import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
@@ -18,6 +17,7 @@ public class RegisterActivityFunctionalTest extends
 		ActivityInstrumentationTestCase2<RegisterActivity> {
 
 	private RegisterActivity registerActivity;
+	private MainActivity mainActivity;
 	private EditText editUsername;
 	private Button registerButton;
 	private ActivityMonitor activityMonitor;
@@ -29,15 +29,15 @@ public class RegisterActivityFunctionalTest extends
 
 	protected void setUp() throws Exception {
 		super.setUp();
+
 		// Get reference to RegisterActivity
 		registerActivity = getActivity();
 
-		// Add ActivityMonitor to check for MainActivity
+		// Add ActivityMonitor to get reference to MainActivity later on
 		activityMonitor = getInstrumentation().addMonitor(
 				MainActivity.class.getName(), null, false);
 
-		// Get references to EditText for username, RegisterButton and TextView
-		// for error messages
+		// Get references to textfield for username and RegisterButton
 		editUsername = (EditText) registerActivity
 				.findViewById(de.pixbox.client.R.id.editUsername);
 		registerButton = (Button) registerActivity
@@ -46,56 +46,88 @@ public class RegisterActivityFunctionalTest extends
 	}
 
 	
-	/*
 	@SmallTest
-	public void testStartMainActivity() throws Exception {
+	public void testRegistration() throws Exception {
 
-		// Clear username
-		editUsername.clearComposingText();
-		final String username = createRandomString();
-		// Set valid username
+		final String incorrectUsername = "foo#bar";
+		final String correctUsername = createRandomString();
+
+		// Set incorrect username
+		// Setting an EditText must run on the UI thread
 		registerActivity.runOnUiThread(new Runnable() {
-			@Override
 			public void run() {
-				// Set a random String as username
-				editUsername.setText(username);
+				editUsername.setText(incorrectUsername);
 			}
 		});
 
-		// Wait until Intrumentation has the new Value
+		// Wait until instrumentation gets the new Value
 		getInstrumentation().waitForIdleSync();
 
-		// Test if RegisterButton is now enabled
-		assertEquals("RegisterButton must be enabled",
+		// Test if RegisterButton is disabled
+		assertEquals(
+				"RegisterButton must be disabled if username contains not allowed chars",
+				registerButton.isEnabled(), false);
+
+		// Set empty username
+		registerActivity.runOnUiThread(new Runnable() {
+			public void run() {
+				editUsername.setText("");
+			}
+		});
+
+		getInstrumentation().waitForIdleSync();
+
+		// Test if RegisterButton is still disabled
+		assertEquals("RegisterButton must be disabled if Username is empty",
+				registerButton.isEnabled(), false);
+
+		// Set correct username
+		registerActivity.runOnUiThread(new Runnable() {
+			public void run() {
+				editUsername.setText(correctUsername);
+			}
+		});
+
+		getInstrumentation().waitForIdleSync();
+
+		// Test if RegisterButton is enabled now
+		assertEquals("RegisterButton must be enabled if username is correct",
 				registerButton.isEnabled(), true);
 
-		// Click registerButton
-		TouchUtils.clickView(this, registerButton);
+		if (registerButton.isEnabled()) {
+			// Click registerButton
+			TouchUtils.clickView(this, registerButton);
 
-		
-		
-		// Wait 2 seconds for the start of the activity
-		MainActivity mainActivity = (MainActivity) activityMonitor
-				.waitForActivityWithTimeout(2000);
-		assertNotNull(mainActivity);
+			// Wait 4 seconds for the start of the MainActivity
+			mainActivity = (MainActivity) activityMonitor
+					.waitForActivityWithTimeout(4000);
 
-		tvUserWelcome = (TextView) mainActivity
-				.findViewById(de.pixbox.client.R.id.tvUserWelcome);
+			// Test if MainActivity has been started
+			assertNotNull("Main Activity was not started after registering",
+					mainActivity);
 
-		// Test if the TextView for the welcome message is on the screen
-		ViewAsserts.assertOnScreen(mainActivity.getWindow().getDecorView(),
-				tvUserWelcome);
+			// Get reference to the TextView for the Welcome Message
+			tvUserWelcome = (TextView) mainActivity
+					.findViewById(de.pixbox.client.R.id.tvUserWelcome);
 
-		// Test if user is welcomed with username
-		assertEquals(
-				"Username is missing in welcome message",
-				registerActivity.getResources().getString(
-						de.pixbox.client.R.string.user_welcome_text, username),
-				tvUserWelcome.getText().toString());
+			// Test if the TextView is on the screen
+			ViewAsserts.assertOnScreen(mainActivity.getWindow().getDecorView(),
+					tvUserWelcome);
+
+			// Test if welcome message and username are displayed
+			assertEquals(
+					"Username is missing in welcome message",
+					registerActivity.getResources().getString(
+							de.pixbox.client.R.string.user_welcome_text,
+							correctUsername), tvUserWelcome.getText()
+							.toString());
+		}
 
 	}
-	
-	*/
+
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
 
 	private String createRandomString() {
 		char[] chars = "abcdefghijklmnopqrstuvwxyz1234567890".toCharArray();

@@ -78,17 +78,18 @@ public class RegisterActivity extends Activity {
 			 */
 			@Override
 			public void afterTextChanged(Editable s) {
+				
+				String username = editUsername.getText().toString();
 
 				// No username is typed in
-				if (usernameIsEmpty(editUsername)) {
+				if (usernameIsEmpty(username)) {
 					registerBtn.setEnabled(false);
 					tvError.setText(getResources().getString(
 							R.string.err_no_username));
 				} else {
-					String username = editUsername.getText().toString();
 
 					// username got invalid chars
-					if (!username.matches("^[a-zA-Z0-9]+$")) {
+					if (!usernameIsCorrect(username)) {
 						registerBtn.setEnabled(false);
 						tvError.setText(getResources().getString(
 								R.string.err_wrong_username));
@@ -193,14 +194,27 @@ public class RegisterActivity extends Activity {
 	
 	/**
 	 * Checks if the TextField for username is empty
-	 * @param etText
-	 * @return
+	 * @param username
+	 * @return boolean
 	 */
-	private boolean usernameIsEmpty(EditText etText) {
-		if (etText.getText().toString().trim().length() > 0) {
+	private boolean usernameIsEmpty(String username) {
+		if (username.length() > 0) {
 			return false;
 		} else {
 			return true;
+		}
+	}
+	
+	/**
+	 * Checks if the a username has non allowed characters
+	 * @param username
+	 * @return boolean
+	 */
+	private boolean usernameIsCorrect(String username) {
+		if (username.matches("^[a-zA-Z0-9]+$")) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
