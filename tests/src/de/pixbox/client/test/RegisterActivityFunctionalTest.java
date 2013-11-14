@@ -30,7 +30,7 @@ public class RegisterActivityFunctionalTest extends
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		// Get reference to RegisterActivity
+		// Get reference to RegisterActivity 
 		registerActivity = getActivity();
 
 		// Add ActivityMonitor to get reference to MainActivity later on
