@@ -126,6 +126,8 @@ public class RegisterActivityFunctionalTest extends
 	}
 
 	protected void tearDown() throws Exception {
+		registerActivity.finish();
+		mainActivity.finish();
 		super.tearDown();
 	}
 

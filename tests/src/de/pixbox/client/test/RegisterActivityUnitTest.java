@@ -39,7 +39,7 @@ public class RegisterActivityUnitTest extends
 		registerButton = (Button) registerActivity.findViewById(buttonID);
 
 		// Test if RegisterButton has the right Text
-		assertEquals("Incorrect label of the Register Button", "Create user",
+		assertEquals("Incorrect label of the Register Button", "Create Account",
 				registerButton.getText());
 
 		// Test if RegisterButton is disabled
